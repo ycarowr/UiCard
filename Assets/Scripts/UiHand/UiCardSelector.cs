@@ -75,7 +75,7 @@ namespace Tools.UI.Card
         {
             if (card == null)
                 throw new ArgumentNullException("Null is not a valid argument.");
-
+            SelectedCard = null;
             EnableCards();
             NotifyHandChange();
         }
