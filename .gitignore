@@ -29,7 +29,6 @@ ExportedObj/
 sysinfo.txt
 
 # Builds
-*.unitypackage
 
 # =========================
 # Operating System Files
