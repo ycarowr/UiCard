@@ -3,13 +3,8 @@ using UnityEngine.UI;
 
 public class UiButtonLagrangeSpot : MonoBehaviour
 {
-    private void Awake()
+    public void OpenTwitter()
     {
-        GetComponent<Button>().onClick.AddListener(OpenTwitter);
-    }
-
-    private void OpenTwitter()
-    {
-        Application.OpenURL("https://twitter.com/LagrangeSpot");
+        Application.OpenURL("https://www.twitter.com/LagrangeSpot");
     }
 }
