@@ -4,9 +4,6 @@ using UnityEngine;
 
 namespace Attributes.Editor
 {
-    /// <summary>
-    ///     Overriding the UnityEditor class in order to support the button attribute.
-    /// </summary>
     [CanEditMultipleObjects]
     [CustomEditor(typeof(Object), true)]
     public class ButtonAttributeInspectors : UnityEditor.Editor
@@ -20,22 +17,19 @@ namespace Attributes.Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            DrawButtons();
+            DrawMethods();
         }
 
-        private void DrawButtons()
+        private void DrawMethods()
         {
             if (Methods.Length < 1)
                 return;
 
-            //get all methods
             foreach (var method in Methods)
             {
-                //get the button attribute
                 var buttonAttribute = (ButtonAttribute) method
                     .GetCustomAttribute(typeof(ButtonAttribute));
 
-                //if button attribute is present, draw it
                 if (buttonAttribute != null)
                     DrawButton(buttonAttribute, method);
             }

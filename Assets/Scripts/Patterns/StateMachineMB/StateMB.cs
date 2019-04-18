@@ -1,40 +1,40 @@
 using UnityEngine;
 
-namespace Patterns
+namespace Patterns.StateMachineMB
 {
     public abstract class StateMB<T> : MonoBehaviour where T : MonoBehaviour
     {
         /// <summary>
-        ///     Reference for the parent finite state machine
+        ///     Reference for the parent Finite StateMB Machine
         /// </summary>
         public T Fsm { get; private set; }
 
         /// <summary>
-        ///     Called by the state machine's Awake
+        ///     Called by the GameControllerMB's Awake
         /// </summary>
         public virtual void OnAwake()
         {
-            Log("OnAwake!");
+//            Log("OnAwake!");
         }
 
         /// <summary>
-        ///     Called by the state machine's Start
+        ///     Called by the GameControllerMB's Start
         /// </summary>
         public virtual void OnStart()
         {
-            Log("OnStart!");
+//            Log("OnStart!");
         }
 
         /// <summary>
-        ///     Called by the state machine's Update when the state is on the top of the stack.
+        ///     Called by the GameControllerMB's Update
         /// </summary>
         public virtual void OnUpdate()
         {
-            Log("OnUpdate! "+ name);
+//            Log("OnUpdate! "+ name);
         }
 
         /// <summary>
-        ///     Called right after enter the state.
+        ///     Called right after enter the state
         /// </summary>
         public virtual void OnEnterState()
         {
@@ -42,7 +42,7 @@ namespace Patterns
         }
 
         /// <summary>
-        ///     Called right after left the state.
+        ///     Called right after left the state
         /// </summary>
         public virtual void OnExitState()
         {
@@ -51,19 +51,20 @@ namespace Patterns
 
 
         /// <summary>
-        ///     Setter to get a reference of the parent state machine.
+        ///     Setter for Internal StateMB Machine
         /// </summary>
         /// <param name="stateMachine"></param>
         public void InjectStateMachine(StateMachineMB<T> stateMachine)
         {
             Fsm = stateMachine as T;
-            Log("StateMachine Assigned");
+            Log("BaseStateMachine Assigned");
         }
 
 
         private void Log(string log, string colorName = "black")
         {
-            (Fsm as StateMachineMB<T>).Log(string.Format("[" + GetType() + "]: <color={0}><b>" + log + "</b></color>", colorName));   
+            log = string.Format("[" + GetType() + "]: <color={0}><b>" + log + "</b></color>", colorName);
+            Debug.Log(log);
         }
     }
 }

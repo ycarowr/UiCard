@@ -1,7 +1,7 @@
 ﻿using System;
 
 /// <summary>
-///     This attribute tells the Editor to draw a button for a method on the editor monobehavior.
+///     This attribute tells the Editor to draw a for a Method.
 ///     Since is using reflection it works for private and protected methods too.
 ///     Ref: https://github.com/dbrizov/NaughtyAttributes
 /// </summary>

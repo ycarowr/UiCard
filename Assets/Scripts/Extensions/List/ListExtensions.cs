@@ -7,9 +7,11 @@ namespace Extensions
 {
     /// <summary>
     ///     Extension methods for the class List
-    ///     Some Refs:
-    ///     https://gist.github.com/omgwtfgames/f917ca28581761b8100f
-    ///     https://github.com/mminer/unity-extensions
+    ///     <T>
+    ///         .
+    ///         Some Refs:
+    ///         https://gist.github.com/omgwtfgames/f917ca28581761b8100f
+    ///         https://github.com/mminer/unity-extensions
     /// </summary>
     public static class ListExtensions
     {

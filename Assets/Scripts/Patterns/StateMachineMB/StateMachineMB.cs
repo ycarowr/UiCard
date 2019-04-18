@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Patterns
+namespace Patterns.StateMachineMB
 {
     /// <summary>
     ///     This class registers and manages all the States of this specific
@@ -13,15 +13,24 @@ namespace Patterns
     /// <typeparam name="T"></typeparam>
     public abstract class StateMachineMB<T> : MonoBehaviour where T : MonoBehaviour
     {
+        //--------------------------------------------------------------------------------------------------------------
+        
+        #region Fields and Properties
+        
         //Push-Pop stack of States of this Type of Finite state Machine
         private readonly Stack<StateMB<T>> stack = new Stack<StateMB<T>>();
 
         //This StatesRegister doesn't allowed you to have two states with the same Type
         private readonly Dictionary<Type, StateMB<T>> statesRegister = new Dictionary<Type, StateMB<T>>();
-        public bool isLogEnabled = false;
+        public bool EnableLogs = true;
         public bool IsInitialized { get; private set; }
 
-
+        #endregion
+        
+        //--------------------------------------------------------------------------------------------------------------
+        
+        #region Initialization
+        
         /// <summary>
         ///     Register all the states
         /// </summary>
@@ -29,7 +38,7 @@ namespace Patterns
         {
             OnBeforeInitialize();
 
-            //grab all states of this StateMachine Type attached to this gameobject
+            //grab all states of this BaseStateMachine Type attached to this gameobject
             var allStates = GetComponents<StateMB<T>>();
 
             //StatesRegister all states
@@ -61,19 +70,14 @@ namespace Patterns
         {
         }
 
-        public void Log(string log, string colorName = "black")
-        {
-            if (isLogEnabled)
-            {
-                log = string.Format("[" + GetType() + "]: <color={0}><b>" + log + "</b></color>", colorName);
-                Debug.Log(log);
-            }
-        }
+        #endregion
+        
+        //--------------------------------------------------------------------------------------------------------------
 
         #region Unity Callbacks
 
         /// <summary>
-        ///     Initialize the StateMachine and Awake all registered states
+        ///     Initialize the BaseStateMachine and Awake all registered states
         /// </summary>
         protected virtual void Awake()
         {
@@ -98,7 +102,8 @@ namespace Patterns
 
 
         /// <summary>
-        ///     Update only the state on the top of the stack.
+        ///     Update all registered states (uncomment it if you need this callback).
+        ///     TODO: Consider to replace 'foreach' by 'for' to minimize the garbage collection.
         /// </summary>
         protected virtual void Update()
         {
@@ -108,6 +113,8 @@ namespace Patterns
         }
 
         #endregion
+        
+        //--------------------------------------------------------------------------------------------------------------
 
         # region Operations
 
@@ -208,5 +215,18 @@ namespace Patterns
         }
 
         #endregion
+        
+        //--------------------------------------------------------------------------------------------------------------
+        
+        private void Log(string log, string colorName = "black")
+        {
+            if (EnableLogs)
+            {
+                log = string.Format("[" + GetType() + "]: <color={0}><b>" + log + "</b></color>", colorName);
+                Debug.Log(log);
+            }
+        }
+        
+        //--------------------------------------------------------------------------------------------------------------
     }
 }
