@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Tools.UI.Card
 {
+    /// <summary>
+    ///     Notifies the hand when the UI component is changed.
+    /// </summary>
     public class UiHandNotify : MonoBehaviour
     {
         private void Awake()

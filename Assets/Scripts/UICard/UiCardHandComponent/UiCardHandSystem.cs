@@ -5,7 +5,7 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(IMouseInput))]
-    public class UiCardHandSystem : MonoBehaviour, IUiCard
+    public class UiCardHandComponent : MonoBehaviour, IUiCard
     {
         //--------------------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ namespace Tools.UI.Card
         Rigidbody IUiCardComponents.Rigidbody => MyRigidbody;
         Transform IUiCardComponents.Transform => MyTransform;
         IMouseInput IUiCardComponents.Input => MyInput;
-        IUiCardHand IUiCardComponents.CardSelector => MyCardSelector;
+        IUiCardHand IUiCardComponents.CardSelector => Hand;
 
         #endregion
 
@@ -34,19 +34,19 @@ namespace Tools.UI.Card
         public string Name => gameObject.name;
         public UiCardParameters CardConfigsParameters => cardConfigsParameters;
         [SerializeField] public UiCardParameters cardConfigsParameters;
-        private UiCardHandFsm CardHandFsm { get; set; }
+        private UiCardHandFsm Fsm { get; set; }
         private Transform MyTransform { get; set; }
         private Collider MyCollider { get; set; }
         private SpriteRenderer[] MyRenderers { get; set; }
         private SpriteRenderer MyRenderer { get; set; }
         private Rigidbody MyRigidbody { get; set; }
         private IMouseInput MyInput { get; set; }
-        private IUiCardHand MyCardSelector { get; set; }
+        private IUiCardHand Hand { get; set; }
         public MonoBehaviour MonoBehavior => this;
         public Camera MainCamera => Camera.main;
-        public bool IsDragging => CardHandFsm.IsCurrent<UiCardDrag>();
-        public bool IsHovering => CardHandFsm.IsCurrent<UiCardHover>();
-        public bool IsDisabled => CardHandFsm.IsCurrent<UiCardDisable>();
+        public bool IsDragging => Fsm.IsCurrent<UiCardDrag>();
+        public bool IsHovering => Fsm.IsCurrent<UiCardHover>();
+        public bool IsDisabled => Fsm.IsCurrent<UiCardDisable>();
 
         #endregion
 
@@ -77,44 +77,38 @@ namespace Tools.UI.Card
 
         public void Hover()
         {
-            CardHandFsm.Hover();
+            Fsm.Hover();
         }
 
         public void Disable()
         {
-            CardHandFsm.Disable();
+            Fsm.Disable();
         }
 
         public void Enable()
         {
-            CardHandFsm.Enable();
-        }
-
-        public void Play()
-        {
-            MyCardSelector.PlayCard(this);
+            Fsm.Enable();
         }
 
         public void Select()
         {
-            MyCardSelector.SelectCard(this);
-            CardHandFsm.Select();
+            Hand.SelectCard(this);
+            Fsm.Select();
         }
 
         public void Unselect()
-        {
-            CardHandFsm.Unselect();
-            MyCardSelector.UnselectCard(this);
+        { 
+            Fsm.Unselect();
         }
 
         public void Draw()
         {
-            CardHandFsm.Draw();
+            Fsm.Draw();
         }
 
         public void Discard()
         {
-            CardHandFsm.Discard();
+            Fsm.Discard();
         }
 
         #endregion
@@ -130,7 +124,7 @@ namespace Tools.UI.Card
             MyCollider = GetComponent<Collider>();
             MyRigidbody = GetComponent<Rigidbody>();
             MyInput = GetComponent<IMouseInput>();
-            MyCardSelector = transform.parent.GetComponentInChildren<IUiCardHand>();
+            Hand = transform.parent.GetComponentInChildren<IUiCardHand>();
             MyRenderers = GetComponentsInChildren<SpriteRenderer>();
             MyRenderer = GetComponent<SpriteRenderer>();
 
@@ -141,12 +135,12 @@ namespace Tools.UI.Card
 
 
             //fsm
-            CardHandFsm = new UiCardHandFsm(MainCamera, CardConfigsParameters, this);
+            Fsm = new UiCardHandFsm(MainCamera, CardConfigsParameters, this);
         }
 
         private void Update()
         {
-            CardHandFsm.Update();
+            Fsm.Update();
             UiCardMovement.Update();
             UiCardRotation.Update();
             UiCardScale.Update();

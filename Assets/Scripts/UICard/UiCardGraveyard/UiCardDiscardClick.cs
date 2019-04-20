@@ -3,6 +3,9 @@ using UnityEngine.EventSystems;
 
 namespace Tools.UI.Card
 {
+    /// <summary>
+    ///     Dicard/Play cards when the object is clicked.
+    /// </summary>
     [RequireComponent(typeof(IMouseInput))]
     public class UiCardDiscardClick : MonoBehaviour
     {

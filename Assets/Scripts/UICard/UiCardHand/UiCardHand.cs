@@ -26,6 +26,8 @@ namespace Tools.UI.Card
         /// </summary>
         public event Action<IUiCard> OnCardPlayed = card => { };
 
+        Action<IUiCard> IUiCardHand.OnCardPlayed { get => OnCardPlayed; set => OnCardPlayed = value; }
+
         #endregion
 
         //--------------------------------------------------------------------------------------------------------------
@@ -42,7 +44,6 @@ namespace Tools.UI.Card
 
             //disable all cards
             DisableCards();
-
             NotifyCardSelected();
         }
 
@@ -81,18 +82,18 @@ namespace Tools.UI.Card
         public void UnselectCard(IUiCard card)
         {
             if (card == null)
-                throw new ArgumentNullException("Null is not a valid argument.");
+                return;
 
             SelectedCard = null;
+            card.Unselect();
             NotifyPileChange();
             EnableCards();
         }
 
-        #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
-
-        #region Extra
+        public void Unselect()
+        {
+            UnselectCard(SelectedCard);
+        }
 
         /// <summary>
         ///     Disable input for all cards.

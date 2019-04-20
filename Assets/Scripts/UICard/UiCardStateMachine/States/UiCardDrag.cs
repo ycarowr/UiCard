@@ -59,7 +59,7 @@ namespace Tools.UI.Card
 
             Handler.RotateTo(Vector3.zero, Parameters.RotationSpeed);
             MakeRenderFirst();
-            NormalColor();
+            RemoveAllTransparency();
         }
 
         public override void OnExitState()

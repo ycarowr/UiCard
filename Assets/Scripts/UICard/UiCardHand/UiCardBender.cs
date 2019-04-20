@@ -15,15 +15,10 @@ namespace Tools.UI.Card
 
         private void Awake()
         {
-            CardSelector = GetComponent<UiCardHand>();
+            CardHand = GetComponent<UiCardHand>();
             CardRenderer = CardPrefab.GetComponent<SpriteRenderer>();
-            CardSelector.OnPileChanged += Bend;
+            CardHand.OnPileChanged += Bend;
         }
-
-        //private void Update()
-        //{
-        //    Bend(CardSelector.Cards.ToArray());
-        //}
 
         #endregion
 
@@ -34,14 +29,14 @@ namespace Tools.UI.Card
         [SerializeField] private UiCardParameters parameters;
 
         [SerializeField] [Tooltip("The Card Prefab")]
-        private UiCardHandSystem CardPrefab;
+        private UiCardHandComponent CardPrefab;
 
         [SerializeField] [Tooltip("Transform used as anchor to position the cards.")]
         private Transform pivot;
 
         private SpriteRenderer CardRenderer { get; set; }
         private float CardWidth => CardRenderer.bounds.size.x;
-        private UiCardHand CardSelector { get; set; }
+        private UiCardHand CardHand { get; set; }
 
         #endregion
 

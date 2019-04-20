@@ -15,6 +15,29 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
+        #region Operations
+
+        public override void OnEnterState()
+        {
+            MakeRenderFirst();
+            SubscribeInput();
+            CachePreviousValues();
+            SetScale();
+            SetPosition();
+            SetRotation();
+        }
+
+        public override void OnExitState()
+        {
+            ResetValues();
+            UnsubscribeInput();
+            DisableCollision();
+        }
+
+        #endregion
+
+        //--------------------------------------------------------------------------------------------------------------
+
         private void OnPointerExit(PointerEventData obj)
         {
             if (Fsm.IsCurrent(this))
@@ -90,26 +113,5 @@ namespace Tools.UI.Card
         #endregion
 
         //--------------------------------------------------------------------------------------------------------------
-
-        #region Operations
-
-        public override void OnEnterState()
-        {
-            MakeRenderFirst();
-            SubscribeInput();
-            CachePreviousValues();
-            SetScale();
-            SetPosition();
-            SetRotation();
-        }
-
-        public override void OnExitState()
-        {
-            ResetValues();
-            UnsubscribeInput();
-            DisableCollision();
-        }
-
-        #endregion
     }
 }

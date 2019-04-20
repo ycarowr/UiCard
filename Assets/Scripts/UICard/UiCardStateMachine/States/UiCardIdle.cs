@@ -29,7 +29,7 @@ namespace Tools.UI.Card
             if (Handler.UiCardMovement.IsOperating)
             {
                 DisableCollision();
-                Handler.UiCardMovement.OnArrive += Enable;
+                Handler.UiCardMovement.OnFinishMotion += Enable;
             }
             else
             {
@@ -44,7 +44,7 @@ namespace Tools.UI.Card
         {
             Handler.Input.OnPointerDown -= OnPointerDown;
             Handler.Input.OnPointerEnter -= OnPointerEnter;
-            Handler.UiCardMovement.OnArrive -= Enable;
+            Handler.UiCardMovement.OnFinishMotion -= Enable;
         }
 
         //--------------------------------------------------------------------------------------------------------------

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 728bc6d5be3dd554bb507ecbd9338553, type: 3}
-  m_Name: CardParameters
+  m_Name: UiCardParameters
   m_EditorClassIdentifier: 
   disabledAlpha: 0.5
   hoverHeight: 0

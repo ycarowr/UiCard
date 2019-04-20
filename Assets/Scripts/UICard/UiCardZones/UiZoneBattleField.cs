@@ -9,8 +9,7 @@ namespace Tools.UI.Card
     {
         protected override void OnPointerUp(PointerEventData eventData)
         {
-            var cardSelected = CardSelector.SelectedCard;
-            cardSelected?.Play();
+            CardHand?.PlaySelected();
         }
     }
 }

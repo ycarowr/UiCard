@@ -6,6 +6,17 @@ public class Logger : PersistentSingleton<Logger>
 {
     //----------------------------------------------------------------------------------------------------------
 
+    #region Fields and Properties
+
+    private const char Period = '.';
+    private const string OpenColor = "]: <color={0}><b>";
+    private const string CloseColor = "</b></color>";
+    [SerializeField] private bool AreLogsEnabled = true;
+
+    #endregion
+
+    //----------------------------------------------------------------------------------------------------------
+
     #region Log
 
     public void Log<T>(object log, string colorName = "black", Type param = null)
@@ -14,9 +25,7 @@ public class Logger : PersistentSingleton<Logger>
         {
             var context = GetTypeName(typeof(T));
             log = string.Format("[" + context + OpenColor + log + CloseColor + GetTypeName(param), colorName);
-
-            if(Application.isEditor)
-                Debug.Log(log);
+            //Debug.Log(log); 
         }
     }
 
@@ -24,7 +33,7 @@ public class Logger : PersistentSingleton<Logger>
 
     //----------------------------------------------------------------------------------------------------------
 
-    #region
+    #region Util
 
     private static string GetTypeName(Type type)
     {
@@ -39,13 +48,4 @@ public class Logger : PersistentSingleton<Logger>
     #endregion
 
     //----------------------------------------------------------------------------------------------------------
-
-    #region Fields and Properties
-
-    private const char Period = '.';
-    private const string OpenColor = "]: <color={0}><b>";
-    private const string CloseColor = "</b></color>";
-    [SerializeField] private bool AreLogsEnabled = true;
-
-    #endregion
 }

@@ -9,9 +9,6 @@ namespace Tools.UI.Card
         {
         }
 
-
-        //--------------------------------------------------------------------------------------------------------------
-
         public override void Execute(Vector3 position, float speed, float delay)
         {
             Speed = speed;
@@ -23,16 +20,14 @@ namespace Tools.UI.Card
                 Handler.MonoBehavior.StartCoroutine(AllowScale(delay));
         }
 
-        //--------------------------------------------------------------------------------------------------------------
-
-        protected override void Finish()
+        protected override void OnMotionEnds()
         {
             IsOperating = false;
             Handler.transform.position = Target;
-            OnArrive?.Invoke();
+            base.OnMotionEnds();
         }
 
-        protected override void KeepExecution()
+        protected override void KeepMotion()
         {
             var current = Handler.transform.position;
             var amount = Speed * Time.deltaTime;
@@ -50,7 +45,5 @@ namespace Tools.UI.Card
             yield return new WaitForSeconds(delay);
             IsOperating = true;
         }
-
-        //--------------------------------------------------------------------------------------------------------------
     }
 }

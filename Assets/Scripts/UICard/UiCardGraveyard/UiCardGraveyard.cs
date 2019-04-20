@@ -6,7 +6,7 @@ namespace Tools.UI.Card
     //------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
-    ///     Card Graveyard holds a register of UI cards that were played by the player.
+    ///     Card graveyard holds a register with cards played by the player.
     /// </summary>
     public class UiCardGraveyard : UiCardPile
     {
@@ -15,7 +15,7 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
-        private UiCardHand CardHand { get; set; }
+        private IUiCardHand CardHand { get; set; }
 
 
         //--------------------------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ namespace Tools.UI.Card
         #region Operations
 
         /// <summary>
-        ///     Add an UI Card to the player hand.
+        ///     Adds a card to the graveyard or discard pile.
         /// </summary>
         /// <param name="card"></param>
         public override void AddCard(IUiCard card)
@@ -52,7 +52,7 @@ namespace Tools.UI.Card
 
 
         /// <summary>
-        ///     Remove an UI Card from the player graveyard.
+        ///     Removes a card from the graveyard or discard pile.
         /// </summary>
         /// <param name="card"></param>
         public override void RemoveCard(IUiCard card)

@@ -8,7 +8,7 @@ namespace Tools.UI.Card
     public abstract class UiBaseCardState : IState
     {
         private const int LayerToRenderNormal = 0;
-        private const int LayerToRenderFirst = 1;
+        private const int LayerToRenderTop = 1;
 
         //--------------------------------------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ namespace Tools.UI.Card
         protected virtual void MakeRenderFirst()
         {
             for (var i = 0; i < Handler.Renderers.Length; i++)
-                Handler.Renderers[i].sortingOrder = LayerToRenderFirst;
+                Handler.Renderers[i].sortingOrder = LayerToRenderTop;
         }
 
 
@@ -53,6 +53,9 @@ namespace Tools.UI.Card
                     Handler.Renderers[i].sortingOrder = LayerToRenderNormal;
         }
 
+        /// <summary>
+        ///     Enables the card entirely. Collision, Rigidybody and adds Alpha.
+        /// </summary>
         protected void Enable()
         {
             if (Handler.Collider)
@@ -61,9 +64,12 @@ namespace Tools.UI.Card
                 Handler.Rigidbody.Sleep();
 
             MakeRenderNormal();
-            NormalColor();
+            RemoveAllTransparency();
         }
 
+        /// <summary>
+        ///     Disables the card entirely. Collision, Rigidybody and adds Alpha.
+        /// </summary>
         protected virtual void Disable()
         {
             DisableCollision();
@@ -77,17 +83,26 @@ namespace Tools.UI.Card
             }
         }
 
+        /// <summary>
+        ///     Disables the collision with this card.
+        /// </summary>
         protected void DisableCollision()
         {
             Handler.Collider.enabled = false;
         }
 
+        /// <summary>
+        ///     Enables the collision with this card.
+        /// </summary>
         protected void EnableCollision()
         {
             Handler.Collider.enabled = true;
         }
 
-        protected void NormalColor()
+        /// <summary>
+        ///     Remove any alpha channel in all renderers.
+        /// </summary>
+        protected void RemoveAllTransparency()
         {
             foreach (var renderer in Handler.Renderers)
                 if (renderer)

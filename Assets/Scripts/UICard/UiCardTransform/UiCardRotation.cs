@@ -4,11 +4,13 @@ namespace Tools.UI.Card
 {
     public class UiCardRotation : UiCardBaseTransform
     {
+        protected override float Threshold => 0.05f;
+
+        //--------------------------------------------------------------------------------------------------------------
+
         public UiCardRotation(IUiCard handler) : base(handler)
         {
         }
-
-        protected override float Threshold => 0.05f;
 
         //--------------------------------------------------------------------------------------------------------------
 
@@ -19,16 +21,14 @@ namespace Tools.UI.Card
             Speed = speed;
         }
 
-        //--------------------------------------------------------------------------------------------------------------
-
-        protected override void Finish()
+        protected override void OnMotionEnds()
         {
             Handler.transform.eulerAngles = Target;
             IsOperating = false;
-            OnArrive?.Invoke();
+            OnFinishMotion?.Invoke();
         }
 
-        protected override void KeepExecution()
+        protected override void KeepMotion()
         {
             var current = Handler.transform.rotation;
             var amount = Speed * Time.deltaTime;

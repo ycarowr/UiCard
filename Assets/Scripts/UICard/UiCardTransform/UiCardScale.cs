@@ -29,17 +29,13 @@ namespace Tools.UI.Card
                 Handler.MonoBehavior.StartCoroutine(AllowScale(delay));
         }
 
-        //--------------------------------------------------------------------------------------------------------------
-
-        #region private
-
-        protected override void Finish()
+        protected override void OnMotionEnds()
         {
             Handler.transform.localScale = Target;
             IsOperating = false;
         }
 
-        protected override void KeepExecution()
+        protected override void KeepMotion()
         {
             var current = Handler.transform.localScale;
             var amount = Time.deltaTime * Speed;
@@ -51,9 +47,5 @@ namespace Tools.UI.Card
             yield return new WaitForSeconds(delay);
             IsOperating = true;
         }
-
-        #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
     }
 }

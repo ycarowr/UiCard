@@ -24,12 +24,12 @@ namespace Tools.UI.Card
             CachePreviousValue();
             DisableCollision();
             SetScale();
-            Handler.UiCardMovement.OnArrive += GoToIdle;
+            Handler.UiCardMovement.OnFinishMotion += GoToIdle;
         }
 
         public override void OnExitState()
         {
-            Handler.UiCardMovement.OnArrive -= GoToIdle;
+            Handler.UiCardMovement.OnFinishMotion -= GoToIdle;
         }
 
         private void GoToIdle()

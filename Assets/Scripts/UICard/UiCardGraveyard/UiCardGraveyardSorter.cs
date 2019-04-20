@@ -10,7 +10,6 @@ namespace Tools.UI.Card
         private Transform graveyardPosition;
 
         [SerializeField] private UiCardParameters parameters;
-        //--------------------------------------------------------------------------------------------------------------
 
         private IUiCardPile CardGraveyard { get; set; }
 

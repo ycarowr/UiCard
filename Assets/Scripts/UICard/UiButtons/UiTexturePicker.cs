@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Tools.UI.Card
 {
+    /// <summary>
+    ///     Picks a Texture randomly when it Awakes.
+    /// </summary>
     public class UiTexturePicker : MonoBehaviour
     {
         [SerializeField] private Sprite[] Sprites;

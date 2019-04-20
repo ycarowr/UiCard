@@ -6,30 +6,24 @@ namespace Tools.UI.Card
 {
     //------------------------------------------------------------------------------------------------------------------
 
-    #region Interface
-
-    public interface IUiCardPile
-    {
-        Action<IUiCard[]> OnPileChanged { get; set; }
-        void AddCard(IUiCard uiCard);
-        void RemoveCard(IUiCard uiCard);
-    }
-
-    #endregion
-
-    //------------------------------------------------------------------------------------------------------------------
-
     /// <summary>
-    ///     Pile of Cards, you can add or remove cards.
+    ///     Pile of cards. Add or Remove cards and be notified when changes happen.
     /// </summary>
     public abstract class UiCardPile : MonoBehaviour, IUiCardPile
     {
         //--------------------------------------------------------------------------------------------------------------
 
+        #region Properties
+
         /// <summary>
-        ///     List which contains all cards of this respective pile.
+        ///     List with all cards.
         /// </summary>
         public List<IUiCard> Cards { get; private set; }
+
+        /// <summary>
+        ///     Event raised when add or remove a card.
+        /// </summary>
+        private event Action<IUiCard[]> onPileChanged = hand => { };
 
         public Action<IUiCard[]> OnPileChanged
         {
@@ -37,7 +31,11 @@ namespace Tools.UI.Card
             set => onPileChanged = value;
         }
 
+        #endregion
+
         //--------------------------------------------------------------------------------------------------------------
+
+        #region Operations
 
         /// <summary>
         ///     Add a card to the pile.
@@ -47,7 +45,7 @@ namespace Tools.UI.Card
         {
             if (card == null)
                 throw new ArgumentNullException("Null is not a valid argument.");
-//
+
             Cards.Add(card);
             card.transform.SetParent(transform);
             NotifyPileChange();
@@ -71,27 +69,6 @@ namespace Tools.UI.Card
         }
 
         /// <summary>
-        ///     Event raised when add or remove a card.
-        /// </summary>
-        private event Action<IUiCard[]> onPileChanged = hand => { };
-
-        //--------------------------------------------------------------------------------------------------------------
-
-        #region Unitycallbacks
-
-        protected virtual void Awake()
-        {
-            //initialize register
-            Cards = new List<IUiCard>();
-
-            Clear();
-        }
-
-        #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
-
-        /// <summary>
         ///     Clear all the pile.
         /// </summary>
         [Button]
@@ -112,6 +89,22 @@ namespace Tools.UI.Card
         {
             onPileChanged?.Invoke(Cards.ToArray());
         }
+
+        #endregion
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        #region Unitycallbacks
+
+        protected virtual void Awake()
+        {
+            //initialize register
+            Cards = new List<IUiCard>();
+
+            Clear();
+        }
+
+        #endregion
 
         //--------------------------------------------------------------------------------------------------------------
     }

@@ -12,15 +12,9 @@ namespace Tools.UI.Card
         {
         }
 
-        //--------------------------------------------------------------------------------------------------------------
-
-        #region Operations
-
         public override void OnEnterState()
         {
             Disable();
         }
-
-        #endregion
     }
 }

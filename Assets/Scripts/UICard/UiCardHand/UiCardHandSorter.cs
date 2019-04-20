@@ -9,14 +9,14 @@ namespace Tools.UI.Card
         //--------------------------------------------------------------------------------------------------------------
 
         private const int OffsetZ = -1;
-        private IUiCardPile CardSelector { get; set; }
+        private IUiCardPile CardHand { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
 
         private void Awake()
         {
-            CardSelector = GetComponent<UiCardHand>();
-            CardSelector.OnPileChanged += Sort;
+            CardHand = GetComponent<UiCardHand>();
+            CardHand.OnPileChanged += Sort;
         }
 
         //--------------------------------------------------------------------------------------------------------------
