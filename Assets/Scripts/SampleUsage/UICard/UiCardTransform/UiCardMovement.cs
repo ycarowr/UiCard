@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections;
-using Patterns.StateMachine;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Tools.UI.Card
 {
     public class UiCardMovement : UiCardBaseTransform
-    {        
-        public UiCardMovement(IUiCard handler):base(handler)
+    {
+        public UiCardMovement(IUiCard handler) : base(handler)
         {
         }
-        
-        
+
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         public override void Execute(Vector3 position, float speed, float delay)
         {
             Speed = speed;

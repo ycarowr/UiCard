@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Tools.UI.Card
 {
     //------------------------------------------------------------------------------------------------------------------
-    
+
     #region Interface
-    
+
     public interface IUiCardSelector : IUiCardPile
     {
         void PlaySelected();
@@ -15,9 +13,9 @@ namespace Tools.UI.Card
         void SelectCard(IUiCard uiCard);
         void UnselectCard(IUiCard uiCard);
     }
-    
+
     #endregion
-    
+
     //------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
@@ -25,9 +23,8 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiCardHand : UiCardPile, IUiCardSelector
     {
-        
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Properties
 
         //UI Card currently selected by the player
@@ -37,14 +34,14 @@ namespace Tools.UI.Card
         ///     Event raised when a card is selected.
         /// </summary>
         public event Action<IUiCard> OnCardSelected = card => { };
-        
+
         /// <summary>
         ///     Event raised when a card is played.
         /// </summary>
         public event Action<IUiCard> OnCardPlayed = card => { };
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Operations
@@ -106,7 +103,7 @@ namespace Tools.UI.Card
         }
 
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Extra
@@ -136,7 +133,7 @@ namespace Tools.UI.Card
         }
 
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }

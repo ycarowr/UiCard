@@ -7,18 +7,41 @@ namespace Tools.UI.Card
 {
     public class UiCardDrag : UiBaseCardState
     {
-        //--------------------------------------------------------------------------------------------------------------
-        
-        private Vector3 StartEuler { get; set; }
-        private Camera MyCamera { get; }
-        
-        public UiCardDrag(IUiCard handler, Camera camera, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm, parameters)
+        public UiCardDrag(IUiCard handler, Camera camera, BaseStateMachine fsm, UiCardParameters parameters) : base(
+            handler, fsm, parameters)
         {
             MyCamera = camera;
         }
-        
         //--------------------------------------------------------------------------------------------------------------
-        
+
+        private Vector3 StartEuler { get; set; }
+        private Camera MyCamera { get; }
+
+        //--------------------------------------------------------------------------------------------------------------
+
+
+        private Vector3 WorldPoint()
+        {
+            var mousePosition = Handler.Input.MousePosition;
+            var worldPoint = MyCamera.ScreenToWorldPoint(mousePosition);
+            return worldPoint;
+        }
+
+        private void FollowCursor()
+        {
+            var myZ = Handler.Transform.position.z;
+            Handler.Transform.position = WorldPoint().WithZ(myZ);
+        }
+
+        private void AddTorque()
+        {
+            //TODO: Add Torque to the Card.
+
+            throw new NotImplementedException();
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
+
         #region Operations
 
         public override void OnUpdate()
@@ -50,33 +73,9 @@ namespace Tools.UI.Card
 
             DisableCollision();
         }
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
-        
-
-        private Vector3 WorldPoint()
-        {
-            var mousePosition = Handler.Input.MousePosition;
-            var worldPoint = MyCamera.ScreenToWorldPoint(mousePosition);
-            return worldPoint;
-        }
-
-        private void FollowCursor()
-        {
-            var myZ = Handler.Transform.position.z;
-            Handler.Transform.position = WorldPoint().WithZ(myZ);
-        }
-
-        private void AddTorque()
-        {
-            //TODO: Add Torque to the Card.
-
-            throw new NotImplementedException();
-        }
-        
-        //--------------------------------------------------------------------------------------------------------------
-        
     }
 }

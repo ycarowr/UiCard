@@ -1,5 +1,4 @@
-﻿using System;
-using Patterns.StateMachine;
+﻿using Patterns.StateMachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,43 +7,11 @@ namespace Tools.UI.Card
     public class UiCardHover : UiBaseCardState
     {
         //--------------------------------------------------------------------------------------------------------------
-        
-        public UiCardHover(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm, parameters)
-        {
-        }
-        
-        //--------------------------------------------------------------------------------------------------------------
-        
-        #region Properties
-        
-        private Vector3 StartPosition { get; set; }
-        private Vector3 StartEuler { get; set; }
-        private Vector3 StartScale { get; set; }
 
-        #endregion
-        
-        //--------------------------------------------------------------------------------------------------------------
-        
-        #region Operations
-        
-        public override void OnEnterState()
+        public UiCardHover(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
+            parameters)
         {
-            MakeRenderFirst();
-            SubscribeInput();
-            CachePreviousValues();
-            SetScale();
-            SetPosition();
-            SetRotation();
         }
-
-        public override void OnExitState()
-        {
-            ResetValues();
-            UnsubscribeInput();
-            DisableCollision();
-        }
-        
-        #endregion
 
         //--------------------------------------------------------------------------------------------------------------
 
@@ -59,16 +26,16 @@ namespace Tools.UI.Card
             if (Fsm.IsCurrent(this))
                 Handler.Select();
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         private void ResetValues()
         {
             Handler.RotateTo(StartEuler, Parameters.RotationSpeed);
             Handler.MoveTo(StartPosition, Parameters.MovementSpeed);
             Handler.ScaleTo(StartScale, Parameters.ScaleSpeed);
         }
-        
+
         private void SetRotation()
         {
             if (!Parameters.HoverRotation)
@@ -90,7 +57,7 @@ namespace Tools.UI.Card
         {
             var currentScale = Handler.transform.localScale;
             var finalScale = currentScale * Parameters.HoverScale;
-            Handler.ScaleTo(finalScale, Parameters.ScaleSpeed); 
+            Handler.ScaleTo(finalScale, Parameters.ScaleSpeed);
         }
 
         private void CachePreviousValues()
@@ -111,5 +78,38 @@ namespace Tools.UI.Card
             Handler.Input.OnPointerExit -= OnPointerExit;
             Handler.Input.OnPointerDown -= OnPointerDown;
         }
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        #region Properties
+
+        private Vector3 StartPosition { get; set; }
+        private Vector3 StartEuler { get; set; }
+        private Vector3 StartScale { get; set; }
+
+        #endregion
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        #region Operations
+
+        public override void OnEnterState()
+        {
+            MakeRenderFirst();
+            SubscribeInput();
+            CachePreviousValues();
+            SetScale();
+            SetPosition();
+            SetRotation();
+        }
+
+        public override void OnExitState()
+        {
+            ResetValues();
+            UnsubscribeInput();
+            DisableCollision();
+        }
+
+        #endregion
     }
 }

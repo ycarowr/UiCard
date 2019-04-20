@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Tools.UI.Card
@@ -11,6 +8,7 @@ namespace Tools.UI.Card
     {
         private UiCardUtils CardDrawer { get; set; }
         private IMouseInput Input { get; set; }
+
         private void Awake()
         {
             CardDrawer = transform.parent.GetComponentInChildren<UiCardUtils>();

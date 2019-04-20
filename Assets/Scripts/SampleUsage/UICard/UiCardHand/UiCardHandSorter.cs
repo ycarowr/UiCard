@@ -7,10 +7,10 @@ namespace Tools.UI.Card
     public class UiCardHandSorter : MonoBehaviour
     {
         //--------------------------------------------------------------------------------------------------------------
-        
+
         private const int OffsetZ = -1;
         private IUiCardPile CardSelector { get; set; }
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         private void Awake()
@@ -18,7 +18,7 @@ namespace Tools.UI.Card
             CardSelector = GetComponent<UiCardHand>();
             CardSelector.OnPileChanged += Sort;
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         public void Sort(IUiCard[] cards)
@@ -35,7 +35,7 @@ namespace Tools.UI.Card
                 layerZ += OffsetZ;
             }
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 namespace Tools.UI.Card
 {
     public class UiCardScale : UiCardBaseTransform
-    {  
+    {
         //--------------------------------------------------------------------------------------------------------------
-        
-        public UiCardScale(IUiCard handler) : base (handler)
+
+        public UiCardScale(IUiCard handler) : base(handler)
         {
         }
 
@@ -18,7 +18,7 @@ namespace Tools.UI.Card
             var delta = Target - Handler.transform.localScale;
             return delta.magnitude <= Threshold;
         }
-                
+
         public override void Execute(Vector3 scale, float speed, float delay)
         {
             Speed = speed;
@@ -28,11 +28,11 @@ namespace Tools.UI.Card
             else
                 Handler.MonoBehavior.StartCoroutine(AllowScale(delay));
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region private
-        
+
         protected override void Finish()
         {
             Handler.transform.localScale = Target;
@@ -49,11 +49,11 @@ namespace Tools.UI.Card
         private IEnumerator AllowScale(float delay)
         {
             yield return new WaitForSeconds(delay);
-            IsOperating = true;    
+            IsOperating = true;
         }
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }

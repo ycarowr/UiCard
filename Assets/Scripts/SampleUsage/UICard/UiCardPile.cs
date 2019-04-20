@@ -5,18 +5,18 @@ using UnityEngine;
 namespace Tools.UI.Card
 {
     //------------------------------------------------------------------------------------------------------------------
-    
+
     #region Interface
-    
+
     public interface IUiCardPile
     {
+        Action<IUiCard[]> OnPileChanged { get; set; }
         void AddCard(IUiCard uiCard);
         void RemoveCard(IUiCard uiCard);
-        Action<IUiCard[]> OnPileChanged { get; set; }
     }
-    
+
     #endregion
-    
+
     //------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
@@ -31,35 +31,14 @@ namespace Tools.UI.Card
         /// </summary>
         public List<IUiCard> Cards { get; private set; }
 
-        /// <summary>
-        ///     Event raised when add or remove a card.
-        /// </summary>
-        private event Action<IUiCard[]> onPileChanged = hand => { };
-
         public Action<IUiCard[]> OnPileChanged
         {
-            get => onPileChanged; set
-            {
-                onPileChanged = value;
-            }
+            get => onPileChanged;
+            set => onPileChanged = value;
         }
 
         //--------------------------------------------------------------------------------------------------------------
 
-        #region Unitycallbacks
-
-        protected virtual void Awake()
-        {
-            //initialize register
-            Cards = new List<IUiCard>();
-
-            Clear();
-        }
-        
-        #endregion
-        
-        //--------------------------------------------------------------------------------------------------------------
-            
         /// <summary>
         ///     Add a card to the pile.
         /// </summary>
@@ -74,7 +53,6 @@ namespace Tools.UI.Card
             NotifyPileChange();
 
             card.Draw();
-            
         }
 
 
@@ -91,7 +69,26 @@ namespace Tools.UI.Card
 
             NotifyPileChange();
         }
-        
+
+        /// <summary>
+        ///     Event raised when add or remove a card.
+        /// </summary>
+        private event Action<IUiCard[]> onPileChanged = hand => { };
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        #region Unitycallbacks
+
+        protected virtual void Awake()
+        {
+            //initialize register
+            Cards = new List<IUiCard>();
+
+            Clear();
+        }
+
+        #endregion
+
         //--------------------------------------------------------------------------------------------------------------
 
         /// <summary>
@@ -115,7 +112,7 @@ namespace Tools.UI.Card
         {
             onPileChanged?.Invoke(Cards.ToArray());
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }

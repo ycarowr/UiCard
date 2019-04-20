@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Tools.UI.Card
 {
@@ -31,6 +30,7 @@ namespace Tools.UI.Card
         #endregion
 
         #region Properties
+
         public string Name => gameObject.name;
         public UiCardParameters CardConfigsParameters => cardConfigsParameters;
         [SerializeField] public UiCardParameters cardConfigsParameters;
@@ -63,18 +63,18 @@ namespace Tools.UI.Card
         {
             UiCardMovement.Execute(position, speed, delay);
         }
-        
+
         public void ScaleTo(Vector3 scale, float speed, float delay)
         {
             UiCardScale.Execute(scale, speed, delay);
         }
 
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Operations
-        
+
         public void Hover()
         {
             CardHandFsm.Hover();
@@ -111,14 +111,14 @@ namespace Tools.UI.Card
         {
             CardHandFsm.Draw();
         }
-        
+
         public void Discard()
         {
             CardHandFsm.Discard();
         }
 
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Unity Callbacks
@@ -138,7 +138,7 @@ namespace Tools.UI.Card
             UiCardScale = new UiCardScale(this);
             UiCardMovement = new UiCardMovement(this);
             UiCardRotation = new UiCardRotation(this);
-            
+
 
             //fsm
             CardHandFsm = new UiCardHandFsm(MainCamera, CardConfigsParameters, this);
@@ -153,7 +153,7 @@ namespace Tools.UI.Card
         }
 
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }

@@ -8,14 +8,15 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiCardDiscard : UiBaseCardState
     {
-        private Vector3 StartScale { get; set; }
-        
-        public UiCardDiscard(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm, parameters)
+        public UiCardDiscard(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
+            parameters)
         {
         }
-        
+
+        private Vector3 StartScale { get; set; }
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Operations
 
         public override void OnEnterState()
@@ -28,7 +29,7 @@ namespace Tools.UI.Card
         private void SetScale()
         {
             var finalScale = Handler.transform.localScale * Parameters.DiscardedSize;
-            Handler.ScaleTo(finalScale, Parameters.ScaleSpeed);            
+            Handler.ScaleTo(finalScale, Parameters.ScaleSpeed);
         }
 
         private void SetRotation()

@@ -7,19 +7,20 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiCardDisable : UiBaseCardState
     {
-        public UiCardDisable(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm, parameters)
+        public UiCardDisable(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
+            parameters)
         {
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Operations
 
         public override void OnEnterState()
         {
             Disable();
         }
-        
+
         #endregion
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using UnityEngine;
 
 namespace Tools.UI.Card
@@ -7,13 +6,14 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(UiCardGraveyard))]
     public class UiCardGraveyardSorter : MonoBehaviour
     {
-        [SerializeField] private UiCardParameters parameters;
         [SerializeField] [Tooltip("World point where the graveyard is positioned")]
         private Transform graveyardPosition;
+
+        [SerializeField] private UiCardParameters parameters;
         //--------------------------------------------------------------------------------------------------------------
 
         private IUiCardPile CardGraveyard { get; set; }
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         private void Awake()
@@ -21,7 +21,7 @@ namespace Tools.UI.Card
             CardGraveyard = GetComponent<UiCardGraveyard>();
             CardGraveyard.OnPileChanged += Sort;
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         public void Sort(IUiCard[] cards)
@@ -38,13 +38,13 @@ namespace Tools.UI.Card
             lastCard.MoveTo(gravPos, parameters.MovementSpeed);
 
             //move others
-            for (int i = 0; i < cards.Length -1; i++)
+            for (var i = 0; i < cards.Length - 1; i++)
             {
                 var card = cards[i];
                 card.MoveTo(backGravPos, parameters.MovementSpeed);
-            }            
+            }
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }

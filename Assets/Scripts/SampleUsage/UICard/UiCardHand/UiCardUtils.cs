@@ -8,29 +8,28 @@ namespace Tools.UI.Card
     public class UiCardUtils : MonoBehaviour
     {
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Fields
 
         private int Count { get; set; }
-        
+
         [SerializeField] [Tooltip("Prefab of the Card C#")]
         private GameObject cardPrefabCs;
 
         [SerializeField] [Tooltip("World point where the deck is positioned")]
         private Transform deckPosition;
 
-        [SerializeField]
-        [Tooltip("Game view transform")]
+        [SerializeField] [Tooltip("Game view transform")]
         private Transform gameView;
 
         private UiCardHand CardHand { get; set; }
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Unitycallbacks
-        
+
         private void Awake()
         {
             CardHand = transform.parent.GetComponentInChildren<UiCardHand>();
@@ -45,14 +44,12 @@ namespace Tools.UI.Card
                 DrawCard(i);
             }
         }
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Operations
-
-
 
         [Button]
         public void DrawCard(int index)
@@ -87,9 +84,9 @@ namespace Tools.UI.Card
         {
             SceneManager.LoadScene(0);
         }
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }

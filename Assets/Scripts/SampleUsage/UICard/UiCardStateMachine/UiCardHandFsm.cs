@@ -11,7 +11,7 @@ namespace Tools.UI.Card
         //--------------------------------------------------------------------------------------------------------------
 
         #region Constructor
-        
+
         public UiCardHandFsm(Camera camera, UiCardParameters cardConfigsParameters, IUiCard handler = null) :
             base(handler)
         {
@@ -23,7 +23,7 @@ namespace Tools.UI.Card
             HoverState = new UiCardHover(handler, this, CardConfigsParameters);
             DrawState = new UiCardDraw(handler, this, CardConfigsParameters);
             DiscardState = new UiCardDiscard(handler, this, CardConfigsParameters);
-            
+
             RegisterState(IdleState);
             RegisterState(DisableState);
             RegisterState(DragState);
@@ -37,9 +37,9 @@ namespace Tools.UI.Card
         #endregion
 
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Properties
-        
+
         private UiCardIdle IdleState { get; }
         private UiCardDisable DisableState { get; }
         private UiCardDrag DragState { get; }
@@ -47,11 +47,11 @@ namespace Tools.UI.Card
         private UiCardDraw DrawState { get; }
         private UiCardDiscard DiscardState { get; }
         private UiCardParameters CardConfigsParameters { get; }
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Operations
 
         public void Hover()
@@ -88,10 +88,9 @@ namespace Tools.UI.Card
         {
             PushState<UiCardDiscard>();
         }
-        
-        #endregion
-        
-        //--------------------------------------------------------------------------------------------------------------
 
+        #endregion
+
+        //--------------------------------------------------------------------------------------------------------------
     }
 }

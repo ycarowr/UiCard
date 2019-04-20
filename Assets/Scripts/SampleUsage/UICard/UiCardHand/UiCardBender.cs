@@ -10,23 +10,9 @@ namespace Tools.UI.Card
     public class UiCardBender : MonoBehaviour
     {
         //--------------------------------------------------------------------------------------------------------------
-        
-        #region Fields and Properties
 
-        [SerializeField] private UiCardParameters parameters;
-        [SerializeField] [Tooltip("The Card Prefab")]
-        private UiCardHandSystem CardPrefab;
-        [SerializeField] [Tooltip("Transform used as anchor to position the cards.")]
-        private Transform pivot;
-        private SpriteRenderer CardRenderer { get; set; }
-        private float CardWidth => CardRenderer.bounds.size.x;
-        private UiCardHand CardSelector { get; set; }
-
-        #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
-        
         #region Unitycallbacks
+
         private void Awake()
         {
             CardSelector = GetComponent<UiCardHand>();
@@ -38,6 +24,24 @@ namespace Tools.UI.Card
         //{
         //    Bend(CardSelector.Cards.ToArray());
         //}
+
+        #endregion
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        #region Fields and Properties
+
+        [SerializeField] private UiCardParameters parameters;
+
+        [SerializeField] [Tooltip("The Card Prefab")]
+        private UiCardHandSystem CardPrefab;
+
+        [SerializeField] [Tooltip("Transform used as anchor to position the cards.")]
+        private Transform pivot;
+
+        private SpriteRenderer CardRenderer { get; set; }
+        private float CardWidth => CardRenderer.bounds.size.x;
+        private UiCardHand CardSelector { get; set; }
 
         #endregion
 
@@ -109,9 +113,9 @@ namespace Tools.UI.Card
             var widthSpacing = (quantityOfCards - 1) * parameters.Spacing;
             return widthCards + widthSpacing;
         }
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }

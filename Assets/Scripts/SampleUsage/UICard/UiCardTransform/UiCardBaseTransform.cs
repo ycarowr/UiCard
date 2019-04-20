@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using Patterns.StateMachine;
 using UnityEngine;
 
 namespace Tools.UI.Card
@@ -9,6 +7,13 @@ namespace Tools.UI.Card
     {
         public Action OnArrive = () => { };
 
+        //--------------------------------------------------------------------------------------------------------------
+
+        protected UiCardBaseTransform(IUiCard handler)
+        {
+            Handler = handler;
+        }
+
         public bool IsOperating { get; protected set; }
         protected virtual float Threshold => 0.1f;
         protected Vector3 Target { get; set; }
@@ -16,19 +21,12 @@ namespace Tools.UI.Card
         protected float Speed { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
-        
-        protected UiCardBaseTransform(IUiCard handler)
-        {
-            Handler = handler;
-        }
-        
-        //--------------------------------------------------------------------------------------------------------------
-        
+
         public void Update()
         {
             if (!IsOperating)
                 return;
-            
+
             if (CheckFinalState())
                 Finish();
             else
@@ -40,6 +38,7 @@ namespace Tools.UI.Card
         protected abstract void Finish();
         protected abstract void KeepExecution();
         public abstract void Execute(Vector3 vector, float speed, float delay = 0);
+
         public virtual void StopMotion()
         {
             IsOperating = false;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Tools.UI.Card
@@ -11,6 +8,7 @@ namespace Tools.UI.Card
     {
         private UiCardUtils Utils { get; set; }
         private IMouseInput Input { get; set; }
+
         private void Awake()
         {
             Utils = transform.parent.GetComponentInChildren<UiCardUtils>();

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Tools.UI.Card
@@ -17,7 +15,7 @@ namespace Tools.UI.Card
                 button.onClick.AddListener(cardHand.NotifyPileChange);
 
             if (slider)
-                slider.onValueChanged.AddListener((afloat) => { cardHand.NotifyPileChange(); });
+                slider.onValueChanged.AddListener(afloat => { cardHand.NotifyPileChange(); });
         }
     }
 }

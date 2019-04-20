@@ -8,20 +8,22 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiCardDraw : UiBaseCardState
     {
-        private Vector3 StartScale { get; set; }
-        public UiCardDraw(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm, parameters)
+        public UiCardDraw(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
+            parameters)
         {
         }
-        
+
+        private Vector3 StartScale { get; set; }
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Operations
 
         public override void OnEnterState()
         {
             CachePreviousValue();
             DisableCollision();
-            SetScale(); 
+            SetScale();
             Handler.UiCardMovement.OnArrive += GoToIdle;
         }
 
@@ -45,7 +47,7 @@ namespace Tools.UI.Card
         {
             Handler.ScaleTo(StartScale, Parameters.ScaleSpeed);
         }
-        
+
         #endregion
     }
 }

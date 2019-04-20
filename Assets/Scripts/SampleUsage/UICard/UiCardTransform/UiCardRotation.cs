@@ -4,15 +4,15 @@ namespace Tools.UI.Card
 {
     public class UiCardRotation : UiCardBaseTransform
     {
-        protected override float Threshold => 0.05f;
-
         public UiCardRotation(IUiCard handler) : base(handler)
         {
         }
 
+        protected override float Threshold => 0.05f;
+
         //--------------------------------------------------------------------------------------------------------------
 
-        public override void Execute(Vector3 euler, float speed, float delay =0)
+        public override void Execute(Vector3 euler, float speed, float delay = 0)
         {
             IsOperating = true;
             Target = euler;
@@ -41,8 +41,8 @@ namespace Tools.UI.Card
         {
             var distance = Target - Handler.transform.eulerAngles;
             var smallerThanLimit = distance.magnitude <= Threshold;
-            var equals360 = (int)distance.magnitude == 360; 
-            var isFinal = smallerThanLimit || equals360; 
+            var equals360 = (int) distance.magnitude == 360;
+            var isFinal = smallerThanLimit || equals360;
             return isFinal;
         }
 

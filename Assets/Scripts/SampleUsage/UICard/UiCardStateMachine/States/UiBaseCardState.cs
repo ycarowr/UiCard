@@ -1,5 +1,4 @@
 ﻿using Patterns.StateMachine;
-using UnityEngine;
 
 namespace Tools.UI.Card
 {
@@ -9,7 +8,22 @@ namespace Tools.UI.Card
     public abstract class UiBaseCardState : IState
     {
         private const int LayerToRenderNormal = 0;
-        private const int LayerToRenderFirst = 1;        
+        private const int LayerToRenderFirst = 1;
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        #region Constructor
+
+        protected UiBaseCardState(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters)
+        {
+            Fsm = fsm;
+            Handler = handler;
+            Parameters = parameters;
+            IsInitialized = true;
+        }
+
+        #endregion
+
         protected IUiCard Handler { get; }
         protected UiCardParameters Parameters { get; }
         protected BaseStateMachine Fsm { get; }
@@ -17,20 +31,6 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
-        #region Constructor
-
-        protected UiBaseCardState(IUiCard handler, BaseStateMachine fsm,  UiCardParameters parameters)
-        {
-            Fsm = fsm;
-            Handler = handler;
-            Parameters = parameters;
-            IsInitialized = true;
-        }
-        
-        #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
-        
         #region Operations
 
         /// <summary>
@@ -49,17 +49,17 @@ namespace Tools.UI.Card
         protected virtual void MakeRenderNormal()
         {
             for (var i = 0; i < Handler.Renderers.Length; i++)
-                if(Handler.Renderers[i])
+                if (Handler.Renderers[i])
                     Handler.Renderers[i].sortingOrder = LayerToRenderNormal;
         }
 
         protected void Enable()
         {
-            if(Handler.Collider)
+            if (Handler.Collider)
                 EnableCollision();
-            if(Handler.Rigidbody)
+            if (Handler.Rigidbody)
                 Handler.Rigidbody.Sleep();
-            
+
             MakeRenderNormal();
             NormalColor();
         }
@@ -90,18 +90,16 @@ namespace Tools.UI.Card
         protected void NormalColor()
         {
             foreach (var renderer in Handler.Renderers)
-            {
                 if (renderer)
                 {
                     var myColor = renderer.color;
                     myColor.a = 1;
                     renderer.color = myColor;
                 }
-            }
         }
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region FSM
@@ -131,8 +129,7 @@ namespace Tools.UI.Card
         }
 
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
-      
     }
 }

@@ -12,25 +12,25 @@ namespace Tools.UI.Card
     {
         [SerializeField] [Tooltip("World point where the graveyard is positioned")]
         private Transform graveyardPosition;
-        
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         private UiCardHand CardHand { get; set; }
 
 
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Unitycallbacks
-        
+
         protected override void Awake()
         {
             base.Awake();
             CardHand = transform.parent.GetComponentInChildren<UiCardHand>();
             CardHand.OnCardPlayed += AddCard;
         }
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Operations
@@ -65,7 +65,7 @@ namespace Tools.UI.Card
         }
 
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }

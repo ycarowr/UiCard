@@ -9,14 +9,16 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiCardIdle : UiBaseCardState
     {
-        private Vector3 DefaultSize { get; set; }
         //--------------------------------------------------------------------------------------------------------------
-        
-        public UiCardIdle(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm, parameters)
+
+        public UiCardIdle(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
+            parameters)
         {
             DefaultSize = Handler.Transform.localScale;
         }
-        
+
+        private Vector3 DefaultSize { get; }
+
         //--------------------------------------------------------------------------------------------------------------
 
         public override void OnEnterState()
@@ -30,7 +32,9 @@ namespace Tools.UI.Card
                 Handler.UiCardMovement.OnArrive += Enable;
             }
             else
+            {
                 Enable();
+            }
 
             MakeRenderNormal();
             Handler.ScaleTo(DefaultSize, Parameters.ScaleSpeed);
@@ -42,7 +46,7 @@ namespace Tools.UI.Card
             Handler.Input.OnPointerEnter -= OnPointerEnter;
             Handler.UiCardMovement.OnArrive -= Enable;
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         private void OnPointerEnter(PointerEventData obj)
@@ -56,7 +60,7 @@ namespace Tools.UI.Card
             if (Fsm.IsCurrent(this))
                 Handler.Select();
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
     }
 }
