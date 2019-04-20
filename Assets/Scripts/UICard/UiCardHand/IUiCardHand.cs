@@ -10,5 +10,6 @@ namespace Tools.UI.Card
         void SelectCard(IUiCard uiCard);
         void UnselectCard(IUiCard uiCard);
         Action<IUiCard> OnCardPlayed { get; set; }
+        Action<IUiCard> OnCardSelected { get; set; }
     }
 }

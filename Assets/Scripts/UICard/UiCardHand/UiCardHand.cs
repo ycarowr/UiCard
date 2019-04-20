@@ -5,7 +5,7 @@ namespace Tools.UI.Card
     //------------------------------------------------------------------------------------------------------------------
 
     /// <summary>
-    ///     Card Selector holds a register of UI cards of a player.
+    ///     Card Hand holds a register of cards.
     /// </summary>
     public class UiCardHand : UiCardPile, IUiCardHand
     {
@@ -13,20 +13,24 @@ namespace Tools.UI.Card
 
         #region Properties
 
-        //UI Card currently selected by the player
-        public IUiCard SelectedCard { get; private set; }
-
         /// <summary>
-        ///     Event raised when a card is selected.
+        ///      Card currently selected by the player.
         /// </summary>
-        public event Action<IUiCard> OnCardSelected = card => { };
+        public IUiCard SelectedCard { get; private set; }
+        
+        private event Action<IUiCard> OnCardSelected = card => { };
+
+        private event Action<IUiCard> OnCardPlayed = card => { };
 
         /// <summary>
         ///     Event raised when a card is played.
         /// </summary>
-        public event Action<IUiCard> OnCardPlayed = card => { };
-
         Action<IUiCard> IUiCardHand.OnCardPlayed { get => OnCardPlayed; set => OnCardPlayed = value; }
+
+        /// <summary>
+        ///     Event raised when a card is selected.
+        /// </summary>
+        Action<IUiCard> IUiCardHand.OnCardSelected{ get => OnCardSelected; set => OnCardSelected = value; }
 
         #endregion
 
@@ -35,7 +39,7 @@ namespace Tools.UI.Card
         #region Operations
 
         /// <summary>
-        ///     Select UI Card implementation.
+        ///     Select the card in the parameter.
         /// </summary>
         /// <param name="card"></param>
         public void SelectCard(IUiCard card)
@@ -48,7 +52,7 @@ namespace Tools.UI.Card
         }
 
         /// <summary>
-        ///     Play card selected implementation.
+        ///     Play the card which is currently selected. Nothing happens if current is null.
         /// </summary>
         /// <param name="card"></param>
         public void PlaySelected()
@@ -60,7 +64,7 @@ namespace Tools.UI.Card
         }
 
         /// <summary>
-        ///     Play UI Card implementation.
+        ///     Play the card in the parameter.
         /// </summary>
         /// <param name="card"></param>
         public void PlayCard(IUiCard card)
@@ -76,7 +80,7 @@ namespace Tools.UI.Card
         }
 
         /// <summary>
-        ///     Unselect UI Card implementation.
+        ///    Unselect the card in the parameter.
         /// </summary>
         /// <param name="card"></param>
         public void UnselectCard(IUiCard card)
@@ -90,13 +94,16 @@ namespace Tools.UI.Card
             EnableCards();
         }
 
+        /// <summary>
+        ///     Unselect the card which is currently selected. Nothing happens if current is null.
+        /// </summary>
         public void Unselect()
         {
             UnselectCard(SelectedCard);
         }
 
         /// <summary>
-        ///     Disable input for all cards.
+        ///     Disables input for all cards.
         /// </summary>
         public void DisableCards()
         {
@@ -105,7 +112,7 @@ namespace Tools.UI.Card
         }
 
         /// <summary>
-        ///     Enable input for all cards.
+        ///     Enables input for all cards.
         /// </summary>
         public void EnableCards()
         {
