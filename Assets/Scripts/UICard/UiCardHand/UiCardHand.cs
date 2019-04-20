@@ -4,24 +4,10 @@ namespace Tools.UI.Card
 {
     //------------------------------------------------------------------------------------------------------------------
 
-    #region Interface
-
-    public interface IUiCardSelector : IUiCardPile
-    {
-        void PlaySelected();
-        void PlayCard(IUiCard uiCard);
-        void SelectCard(IUiCard uiCard);
-        void UnselectCard(IUiCard uiCard);
-    }
-
-    #endregion
-
-    //------------------------------------------------------------------------------------------------------------------
-
     /// <summary>
     ///     Card Selector holds a register of UI cards of a player.
     /// </summary>
-    public class UiCardHand : UiCardPile, IUiCardSelector
+    public class UiCardHand : UiCardPile, IUiCardHand
     {
         //--------------------------------------------------------------------------------------------------------------
 

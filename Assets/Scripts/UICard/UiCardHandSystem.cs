@@ -17,7 +17,7 @@ namespace Tools.UI.Card
         Rigidbody IUiCardComponents.Rigidbody => MyRigidbody;
         Transform IUiCardComponents.Transform => MyTransform;
         IMouseInput IUiCardComponents.Input => MyInput;
-        IUiCardSelector IUiCardComponents.CardSelector => MyCardSelector;
+        IUiCardHand IUiCardComponents.CardSelector => MyCardSelector;
 
         #endregion
 
@@ -41,7 +41,7 @@ namespace Tools.UI.Card
         private SpriteRenderer MyRenderer { get; set; }
         private Rigidbody MyRigidbody { get; set; }
         private IMouseInput MyInput { get; set; }
-        private IUiCardSelector MyCardSelector { get; set; }
+        private IUiCardHand MyCardSelector { get; set; }
         public MonoBehaviour MonoBehavior => this;
         public Camera MainCamera => Camera.main;
         public bool IsDragging => CardHandFsm.IsCurrent<UiCardDrag>();
@@ -130,7 +130,7 @@ namespace Tools.UI.Card
             MyCollider = GetComponent<Collider>();
             MyRigidbody = GetComponent<Rigidbody>();
             MyInput = GetComponent<IMouseInput>();
-            MyCardSelector = transform.parent.GetComponentInChildren<IUiCardSelector>();
+            MyCardSelector = transform.parent.GetComponentInChildren<IUiCardHand>();
             MyRenderers = GetComponentsInChildren<SpriteRenderer>();
             MyRenderer = GetComponent<SpriteRenderer>();
 
