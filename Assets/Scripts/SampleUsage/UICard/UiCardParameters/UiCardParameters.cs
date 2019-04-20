@@ -105,11 +105,12 @@ namespace Tools.UI.Card
         public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
         public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
         public float ScaleSpeed { get => scaleSpeed; set => scaleSpeed = value;}
-        
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
+        #region Draw Discard
         [Header("Draw")][SerializeField][Range(0, 1)][Tooltip("Scale when draw the card")]
         private float startSizeWhenDraw;
 
@@ -121,5 +122,29 @@ namespace Tools.UI.Card
         private float discardedSize;
 
         public float DiscardedSize => discardedSize;
+
+        #endregion
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        public void SetDefaults()
+        {
+            disabledAlpha = 0.5f;
+
+            hoverHeight = 0;
+            hoverRotation = false;
+            hoverScale = 1.3f;
+
+            height = 0.12f;
+            spacing = -2;
+            bentAngle = 20;
+
+            rotationSpeed = 20;
+            movementSpeed = 4;
+            scaleSpeed = 8;
+
+            startSizeWhenDraw = 0.05f;
+            discardedSize = 0.5f;
+        }
     }
 }

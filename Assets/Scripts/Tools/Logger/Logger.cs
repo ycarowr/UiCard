@@ -14,7 +14,9 @@ public class Logger : PersistentSingleton<Logger>
         {
             var context = GetTypeName(typeof(T));
             log = string.Format("[" + context + OpenColor + log + CloseColor + GetTypeName(param), colorName);
-            Debug.Log(log);
+
+            if(Application.isEditor)
+                Debug.Log(log);
         }
     }
 

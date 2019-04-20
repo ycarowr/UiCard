@@ -20,7 +20,7 @@ MonoBehaviour:
   spacing: -2
   bentAngle: 20
   rotationSpeed: 20
-  movementSpeed: 5
-  scaleSpeed: 6
+  movementSpeed: 4
+  scaleSpeed: 8
   startSizeWhenDraw: 0.05
   discardedSize: 0.5
