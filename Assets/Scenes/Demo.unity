@@ -772,9 +772,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1590410884}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 30
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 20
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2717,7 +2717,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &587020471
 GameObject:
   m_ObjectHideFlags: 0
@@ -8126,8 +8126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5d9381ee7c4a449bdc58df6fef0101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parameters: {fileID: 11400000, guid: f79f21692e2d8a746b39e9a2eadfd5df, type: 2}
   graveyardPosition: {fileID: 1759191721}
+  parameters: {fileID: 11400000, guid: f79f21692e2d8a746b39e9a2eadfd5df, type: 2}
 --- !u!114 &1759191726
 MonoBehaviour:
   m_ObjectHideFlags: 0
