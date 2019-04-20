@@ -14,19 +14,23 @@ namespace Tools.UI.Card
         
         //--------------------------------------------------------------------------------------------------------------
         
-        public override void Execute(Vector3 position, float speed)
+        public override void Execute(Vector3 position, float speed, float delay)
         {
             Speed = speed;
             Target = position;
-            Handler.MonoBehavior.StartCoroutine(AllowMovement(0.01f));
+
+            if (delay == 0)
+                IsOperating = true;
+            else
+                Handler.MonoBehavior.StartCoroutine(AllowScale(delay));
         }
-                
+
         //--------------------------------------------------------------------------------------------------------------
-        
+
         protected override void Finish()
         {
-            Handler.transform.position = Target;
             IsOperating = false;
+            Handler.transform.position = Target;
             OnArrive?.Invoke();
         }
 
@@ -37,16 +41,16 @@ namespace Tools.UI.Card
             Handler.transform.position = Vector3.Lerp(current, Target, amount);
         }
 
-        private IEnumerator AllowMovement(float time)
-        {
-            yield return new WaitForSeconds(time);
-            IsOperating = true;    
-        }
-
         protected override bool CheckFinalState()
         {
             var distance = Target - Handler.transform.position;
-            return distance.magnitude > Threshold;
+            return distance.magnitude <= Threshold;
+        }
+
+        private IEnumerator AllowScale(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            IsOperating = true;
         }
 
         //--------------------------------------------------------------------------------------------------------------

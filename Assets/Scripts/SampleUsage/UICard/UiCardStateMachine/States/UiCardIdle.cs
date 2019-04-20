@@ -14,8 +14,6 @@ namespace Tools.UI.Card
         
         public UiCardIdle(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm, parameters)
         {
-            Handler.Input.OnPointerDown += OnPointerDown;
-            Handler.Input.OnPointerEnter += OnPointerEnter;
             DefaultSize = Handler.Transform.localScale;
         }
         
@@ -23,6 +21,9 @@ namespace Tools.UI.Card
 
         public override void OnEnterState()
         {
+            Handler.Input.OnPointerDown += OnPointerDown;
+            Handler.Input.OnPointerEnter += OnPointerEnter;
+
             if (Handler.UiCardMovement.IsOperating)
             {
                 DisableCollision();
@@ -30,13 +31,15 @@ namespace Tools.UI.Card
             }
             else
                 Enable();
-            
+
             MakeRenderNormal();
-            Handler.transform.localScale = DefaultSize;
+            Handler.ScaleTo(DefaultSize, Parameters.ScaleSpeed);
         }
 
         public override void OnExitState()
         {
+            Handler.Input.OnPointerDown -= OnPointerDown;
+            Handler.Input.OnPointerEnter -= OnPointerEnter;
             Handler.UiCardMovement.OnArrive -= Enable;
         }
         

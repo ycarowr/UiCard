@@ -16,14 +16,17 @@ namespace Tools.UI.Card
         protected override bool CheckFinalState()
         {
             var delta = Target - Handler.transform.localScale;
-            return delta.magnitude > Threshold;
+            return delta.magnitude <= Threshold;
         }
                 
-        public override void Execute(Vector3 scale, float speed)
+        public override void Execute(Vector3 scale, float speed, float delay)
         {
             Speed = speed;
             Target = scale;
-            Handler.MonoBehavior.StartCoroutine(AllowScale(0.01f));
+            if (delay == 0)
+                IsOperating = true;
+            else
+                Handler.MonoBehavior.StartCoroutine(AllowScale(delay));
         }
         
         //--------------------------------------------------------------------------------------------------------------

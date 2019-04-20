@@ -6,6 +6,7 @@ namespace Tools.UI.Card
     {
         bool IsDragging { get; }
         bool IsHovering { get; }
+        bool IsDisabled { get; }
         void Play();
         void Disable();
         void Enable();

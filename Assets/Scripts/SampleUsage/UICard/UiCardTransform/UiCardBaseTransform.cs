@@ -10,7 +10,7 @@ namespace Tools.UI.Card
         public Action OnArrive = () => { };
 
         public bool IsOperating { get; protected set; }
-        protected const float Threshold = 0.1f;
+        protected virtual float Threshold => 0.1f;
         protected Vector3 Target { get; set; }
         protected IUiCard Handler { get; }
         protected float Speed { get; set; }
@@ -30,15 +30,19 @@ namespace Tools.UI.Card
                 return;
             
             if (CheckFinalState())
-                KeepExecution();
-            else
                 Finish();
+            else
+                KeepExecution();
         }
 
 
         protected abstract bool CheckFinalState();
         protected abstract void Finish();
         protected abstract void KeepExecution();
-        public abstract void Execute(Vector3 vector, float speed);
+        public abstract void Execute(Vector3 vector, float speed, float delay = 0);
+        public virtual void StopMotion()
+        {
+            IsOperating = false;
+        }
     }
 }

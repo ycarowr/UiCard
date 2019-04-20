@@ -5,5 +5,6 @@
     /// </summary>
     public interface IStateMachineHandler
     {
+        string Name { get; }
     }
 }

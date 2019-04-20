@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 namespace Tools.UI.Card
 {
-    [RequireComponent(typeof(UiCardSelector))]
     public class UiCardUtils : MonoBehaviour
     {
         //--------------------------------------------------------------------------------------------------------------
         
         #region Fields
+
+        private int Count { get; set; }
         
         [SerializeField] [Tooltip("Prefab of the Card C#")]
         private GameObject cardPrefabCs;
@@ -22,7 +23,7 @@ namespace Tools.UI.Card
         [Tooltip("Game view transform")]
         private Transform gameView;
 
-        private UiCardSelector CardSelector { get; set; }
+        private UiCardHand CardHand { get; set; }
         
         #endregion
         
@@ -32,7 +33,7 @@ namespace Tools.UI.Card
         
         private void Awake()
         {
-            CardSelector = GetComponent<UiCardSelector>();
+            CardHand = transform.parent.GetComponentInChildren<UiCardHand>();
         }
 
         private IEnumerator Start()
@@ -51,24 +52,27 @@ namespace Tools.UI.Card
         
         #region Operations
 
+
+
         [Button]
         public void DrawCard(int index)
         {
             //TODO: Consider replace Instantiate by an Object Pool Pattern
             var cardGo = Instantiate(cardPrefabCs, gameView);
+            cardGo.name = "Card_" + Count;
             var card = cardGo.GetComponent<IUiCard>();
             card.transform.position = deckPosition.position;
-
-            CardSelector.AddCard(card);
+            Count++;
+            CardHand.AddCard(card);
         }
 
         [Button]
         public void PlayCard()
         {
-            if (CardSelector.Cards.Count > 0)
+            if (CardHand.Cards.Count > 0)
             {
-                var randomCard = CardSelector.Cards.RandomItem();
-                CardSelector.PlayCard(randomCard);
+                var randomCard = CardHand.Cards.RandomItem();
+                CardHand.PlayCard(randomCard);
             }
         }
 

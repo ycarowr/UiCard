@@ -31,7 +31,7 @@ namespace Tools.UI.Card
         #endregion
 
         #region Properties
-
+        public string Name => gameObject.name;
         public UiCardParameters CardConfigsParameters => cardConfigsParameters;
         [SerializeField] public UiCardParameters cardConfigsParameters;
         private UiCardHandFsm CardHandFsm { get; set; }
@@ -46,9 +46,10 @@ namespace Tools.UI.Card
         public Camera MainCamera => Camera.main;
         public bool IsDragging => CardHandFsm.IsCurrent<UiCardDrag>();
         public bool IsHovering => CardHandFsm.IsCurrent<UiCardHover>();
-        
+        public bool IsDisabled => CardHandFsm.IsCurrent<UiCardDisable>();
+
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Transform
@@ -58,19 +59,14 @@ namespace Tools.UI.Card
             UiCardRotation.Execute(rotation, speed);
         }
 
-        public void MoveTo(Vector3 position, float speed)
+        public void MoveTo(Vector3 position, float speed, float delay)
         {
-            UiCardMovement.Execute(position, speed);
-        }
-
-        public void TeleportTo(Vector3 position)
-        {
-            //UiCardTeleport.Execute(position);
+            UiCardMovement.Execute(position, speed, delay);
         }
         
-        public void ScaleTo(Vector3 scale, float speed)
+        public void ScaleTo(Vector3 scale, float speed, float delay)
         {
-            UiCardScale.Execute(scale, speed);
+            UiCardScale.Execute(scale, speed, delay);
         }
 
         #endregion

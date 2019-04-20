@@ -23,7 +23,7 @@ namespace Tools.UI.Card
     /// <summary>
     ///     Card Selector holds a register of UI cards of a player.
     /// </summary>
-    public class UiCardSelector : UiCardPile, IUiCardSelector
+    public class UiCardHand : UiCardPile, IUiCardSelector
     {
         
         //--------------------------------------------------------------------------------------------------------------
@@ -101,8 +101,8 @@ namespace Tools.UI.Card
                 throw new ArgumentNullException("Null is not a valid argument.");
 
             SelectedCard = null;
-            EnableCards();
             NotifyPileChange();
+            EnableCards();
         }
 
         #endregion

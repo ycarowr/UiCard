@@ -5,7 +5,7 @@ namespace Tools.UI.Card
 {
     public class UiButtonsCardTest : MonoBehaviour
     {
-        [SerializeField] protected UiCardSelector CardSelector;
+        [SerializeField] protected UiCardHand CardSelector;
 
         protected virtual void Awake()
         {

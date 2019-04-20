@@ -1,4 +1,5 @@
-﻿using Patterns.StateMachine;
+﻿using System;
+using Patterns.StateMachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -38,14 +39,13 @@ namespace Tools.UI.Card
 
         public override void OnExitState()
         {
-            UnsubscribeInput();
             ResetValues();
+            UnsubscribeInput();
+            DisableCollision();
         }
-
         
-
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         private void OnPointerExit(PointerEventData obj)

@@ -71,8 +71,10 @@ namespace Tools.UI.Card
 //
             Cards.Add(card);
             card.transform.SetParent(transform);
-            card.Draw();
             NotifyPileChange();
+
+            card.Draw();
+            
         }
 
 
@@ -109,7 +111,7 @@ namespace Tools.UI.Card
         ///     Notify all listeners of this pile that some change has been made.
         /// </summary>
         [Button]
-        protected void NotifyPileChange()
+        public void NotifyPileChange()
         {
             onPileChanged?.Invoke(Cards.ToArray());
         }

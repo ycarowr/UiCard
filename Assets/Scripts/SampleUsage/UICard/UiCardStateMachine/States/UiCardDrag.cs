@@ -23,11 +23,14 @@ namespace Tools.UI.Card
 
         public override void OnUpdate()
         {
-            AddMovement();
+            FollowCursor();
         }
 
         public override void OnEnterState()
         {
+            //stop any movement
+            Handler.UiCardMovement.StopMotion();
+
             //cache old values
             StartEuler = Handler.Transform.eulerAngles;
 
@@ -44,6 +47,8 @@ namespace Tools.UI.Card
                 Handler.RotateTo(StartEuler, Parameters.RotationSpeed);
                 MakeRenderNormal();
             }
+
+            DisableCollision();
         }
         
         #endregion
@@ -58,7 +63,7 @@ namespace Tools.UI.Card
             return worldPoint;
         }
 
-        private void AddMovement()
+        private void FollowCursor()
         {
             var myZ = Handler.Transform.position.z;
             Handler.Transform.position = WorldPoint().WithZ(myZ);

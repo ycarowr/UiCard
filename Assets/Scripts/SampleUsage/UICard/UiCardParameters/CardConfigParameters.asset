@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728bc6d5be3dd554bb507ecbd9338553, type: 3}
   m_Name: CardConfigParameters
   m_EditorClassIdentifier: 
-  disabledAlpha: 0.46874943
-  hoverHeight: 1.247534
+  disabledAlpha: 0.5
+  hoverHeight: 0
   hoverRotation: 0
   hoverScale: 1.3
-  height: 0.16250813
-  spacing: -2.375
-  bentAngle: 8.999217
-  movementSpeed: 4
-  rotationSpeed: 15
-  scaleSpeed: 8
+  height: 0.12
+  spacing: -2
+  bentAngle: 20
+  rotationSpeed: 20
+  movementSpeed: 5
+  scaleSpeed: 6
   startSizeWhenDraw: 0.05
   discardedSize: 0.5

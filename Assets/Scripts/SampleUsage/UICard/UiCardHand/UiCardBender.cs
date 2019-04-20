@@ -6,7 +6,7 @@ namespace Tools.UI.Card
     /// <summary>
     ///     Class responsible to bend the cards in the player hand.
     /// </summary>
-    [RequireComponent(typeof(UiCardSelector))]
+    [RequireComponent(typeof(UiCardHand))]
     public class UiCardBender : MonoBehaviour
     {
         //--------------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ namespace Tools.UI.Card
         private Transform pivot;
         private SpriteRenderer CardRenderer { get; set; }
         private float CardWidth => CardRenderer.bounds.size.x;
-        private UiCardSelector CardSelector { get; set; }
+        private UiCardHand CardSelector { get; set; }
 
         #endregion
 
@@ -29,22 +29,22 @@ namespace Tools.UI.Card
         #region Unitycallbacks
         private void Awake()
         {
-            CardSelector = GetComponent<UiCardSelector>();
+            CardSelector = GetComponent<UiCardHand>();
             CardRenderer = CardPrefab.GetComponent<SpriteRenderer>();
             CardSelector.OnPileChanged += Bend;
         }
 
-//        private void Update()
-//        {
-//            Bend(CardSelector.Cards.ToArray());
-//        }
-        
+        //private void Update()
+        //{
+        //    Bend(CardSelector.Cards.ToArray());
+        //}
+
         #endregion
 
         //--------------------------------------------------------------------------------------------------------------
-        
+
         #region Operations
-        
+
         private void Bend(IUiCard[] cards)
         {
             if (cards == null)

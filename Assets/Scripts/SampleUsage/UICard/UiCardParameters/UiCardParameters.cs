@@ -18,12 +18,12 @@ namespace Tools.UI.Card
         private float disabledAlpha;
 
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Hover
-        
-        
+
+
 
         public float HoverHeight
         {
@@ -53,11 +53,11 @@ namespace Tools.UI.Card
         private float hoverScale;
 
         #endregion
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Bend
-        
+
         public float Height
         {
             get => height;
@@ -90,21 +90,21 @@ namespace Tools.UI.Card
         //--------------------------------------------------------------------------------------------------------------
 
         #region Movement
-        
-        [Header("Movement")][SerializeField][Range(1, 50)][Tooltip("Speed of a card while it is moving")]
-        private float movementSpeed;
-        
-        [Header("Rotation")][SerializeField][Range(1, 50)][Tooltip("Speed of a card while it is rotating")]
+
+        [Header("Rotation")]
+        [SerializeField] [Range(0, 30)] [Tooltip("Speed of a card while it is rotating")]
         private float rotationSpeed;
 
-        [Header("Scale")][SerializeField][Range(1, 50)][Tooltip("Speed of a card while it is scaling")]
-        private float scaleSpeed;
-        
-        public float MovementSpeed => movementSpeed;
+        [Header("Movement")] [SerializeField] [Range(0, 10)] [Tooltip("Speed of a card while it is moving")]
+        private float movementSpeed;
 
-        public float RotationSpeed => rotationSpeed;
         
-        public float ScaleSpeed => scaleSpeed;
+        [Header("Scale")] [SerializeField] [Range(0, 10)] [Tooltip("Speed of a card while it is scaling")]
+        private float scaleSpeed;
+
+        public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+        public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
+        public float ScaleSpeed { get => scaleSpeed; set => scaleSpeed = value;}
         
         #endregion
         
@@ -113,7 +113,7 @@ namespace Tools.UI.Card
         [Header("Draw")][SerializeField][Range(0, 1)][Tooltip("Scale when draw the card")]
         private float startSizeWhenDraw;
 
-        public float StartSizeWhenDraw => startSizeWhenDraw;
+        public float StartSizeWhenDraw { get => startSizeWhenDraw; set => startSizeWhenDraw = value; }
 
         //--------------------------------------------------------------------------------------------------------------
         

@@ -8,7 +8,6 @@ namespace Tools.UI.Card
     /// <summary>
     ///     Card Graveyard holds a register of UI cards that were played by the player.
     /// </summary>
-    [RequireComponent(typeof(UiCardSelector))]
     public class UiCardGraveyard : UiCardPile
     {
         [SerializeField] [Tooltip("World point where the graveyard is positioned")]
@@ -16,7 +15,7 @@ namespace Tools.UI.Card
         
         //--------------------------------------------------------------------------------------------------------------
         
-        private UiCardSelector CardSelector { get; set; }
+        private UiCardHand CardHand { get; set; }
 
 
         //--------------------------------------------------------------------------------------------------------------
@@ -26,8 +25,8 @@ namespace Tools.UI.Card
         protected override void Awake()
         {
             base.Awake();
-            CardSelector = GetComponent<UiCardSelector>();
-            CardSelector.OnCardPlayed += AddCard;
+            CardHand = transform.parent.GetComponentInChildren<UiCardHand>();
+            CardHand.OnCardPlayed += AddCard;
         }
         
         #endregion
