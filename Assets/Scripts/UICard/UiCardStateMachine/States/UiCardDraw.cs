@@ -1,4 +1,5 @@
-﻿using Patterns.StateMachine;
+﻿using System;
+using Patterns.StateMachine;
 using UnityEngine;
 
 namespace Tools.UI.Card

@@ -34,7 +34,8 @@ namespace Tools.UI.Card
 
         private void SetRotation()
         {
-            Handler.RotateTo(Vector3.zero, Parameters.RotationSpeed);
+            var speed = Handler.IsPlayer ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
+            Handler.RotateTo(Vector3.zero, speed);
         }
 
         #endregion

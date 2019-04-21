@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UiCardParameters
   m_EditorClassIdentifier: 
   disabledAlpha: 0.5
-  hoverHeight: 0
+  hoverHeight: 1
   hoverRotation: 0
   hoverScale: 1.3
   height: 0.12

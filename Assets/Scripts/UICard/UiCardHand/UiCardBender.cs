@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Extensions;
+using System;
 using UnityEngine;
 
 namespace Tools.UI.Card
@@ -36,7 +37,7 @@ namespace Tools.UI.Card
 
         private SpriteRenderer CardRenderer { get; set; }
         private float CardWidth => CardRenderer.bounds.size.x;
-        private UiCardHand CardHand { get; set; }
+        private IUiCardHand CardHand { get; set; }
 
         #endregion
 
@@ -54,6 +55,8 @@ namespace Tools.UI.Card
             var firstAngle = CalcFirstAngle(fullAngle);
             var handWidth = CalcHandWidth(cards.Length);
 
+            var pivotLocationFactor = pivot.CloserEdge(Camera.main, Screen.width, Screen.height);
+
             //calc first position of the offset on X axis
             var offsetX = pivot.position.x - handWidth / 2;
 
@@ -62,22 +65,24 @@ namespace Tools.UI.Card
                 var card = cards[i];
 
                 //set card Z angle
-                var angleTwist = firstAngle + i * anglePerCard;
+                var angleTwist = (firstAngle + i * anglePerCard) * pivotLocationFactor;
 
                 //calc x position
                 var xPos = offsetX + CardWidth / 2;
 
                 //calc y position
                 var yDistance = Mathf.Abs(angleTwist) * parameters.Height;
-                var yPos = pivot.position.y - yDistance;
+                var yPos = pivot.position.y - (yDistance * pivotLocationFactor);
 
                 //set position
                 if (!card.IsDragging && !card.IsHovering)
                 {
-                    var rotation = new Vector3(0, 0, angleTwist);
+                    var zAxisRot = pivotLocationFactor == 1 ? 0 : 180;
+                    var rotation = new Vector3(0, 0, angleTwist - zAxisRot);
                     var position = new Vector3(xPos, yPos, card.transform.position.z);
 
-                    card.RotateTo(rotation, parameters.RotationSpeed);
+                    var rotSpeed = card.IsPlayer ? parameters.RotationSpeed : parameters.RotationSpeedP2;
+                    card.RotateTo(rotation, rotSpeed);
                     card.MoveTo(position, parameters.MovementSpeed);
                 }
 

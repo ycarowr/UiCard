@@ -1,4 +1,5 @@
-﻿using Patterns.StateMachine;
+﻿using Extensions;
+using Patterns.StateMachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -54,25 +55,37 @@ namespace Tools.UI.Card
 
         private void ResetValues()
         {
-            Handler.RotateTo(StartEuler, Parameters.RotationSpeed);
+            var rotationSpeed = Handler.IsPlayer ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
+            Handler.RotateTo(StartEuler, rotationSpeed);
             Handler.MoveTo(StartPosition, Parameters.MovementSpeed);
             Handler.ScaleTo(StartScale, Parameters.ScaleSpeed);
         }
 
         private void SetRotation()
         {
-            if (!Parameters.HoverRotation)
-                Handler.RotateTo(Vector3.zero, Parameters.RotationSpeed);
+            if (Parameters.HoverRotation)
+                return;
+
+            var speed = Handler.IsPlayer ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
+
+            Handler.RotateTo(Vector3.zero, speed);
         }
 
+        /// <summary>
+        ///     View Math.
+        /// </summary>
         private void SetPosition()
         {
+            var camera = Handler.MainCamera;
             var halfCardHeight = new Vector3(0, Handler.MyRenderer.bounds.size.y / 2);
-            var pointZeroScreen = Handler.MainCamera.ScreenToWorldPoint(Vector3.zero);
-            var bottomScreenY = new Vector3(0, pointZeroScreen.y);
+            var bottomEdge = Handler.MainCamera.ScreenToWorldPoint(Vector3.zero);
+            var topEdge = Handler.MainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height));
+            var edgeFactor = Handler.transform.CloserEdge(camera, Screen.width, Screen.height);
+            var myEdge = edgeFactor == 1 ? bottomEdge : topEdge;
+            var edgeY = new Vector3(0, myEdge.y);
             var currentPosWithoutY = new Vector3(Handler.transform.position.x, 0, Handler.transform.position.z);
             var hoverHeightParameter = new Vector3(0, Parameters.HoverHeight);
-            var final = currentPosWithoutY + bottomScreenY + halfCardHeight + hoverHeightParameter;
+            var final = currentPosWithoutY + edgeY + (halfCardHeight + hoverHeightParameter) * edgeFactor;
             Handler.MoveTo(final, Parameters.MovementSpeed);
         }
 
@@ -100,6 +113,11 @@ namespace Tools.UI.Card
         {
             Handler.Input.OnPointerExit -= OnPointerExit;
             Handler.Input.OnPointerDown -= OnPointerDown;
+        }
+
+        private void CalcEdge()
+        {
+
         }
 
         //--------------------------------------------------------------------------------------------------------------

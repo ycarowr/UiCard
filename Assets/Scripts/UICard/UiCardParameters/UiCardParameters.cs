@@ -91,9 +91,15 @@ namespace Tools.UI.Card
 
         #region Movement
 
+
         [Header("Rotation")]
-        [SerializeField] [Range(0, 30)] [Tooltip("Speed of a card while it is rotating")]
+        [SerializeField] [Range(0, 60)] [Tooltip("Speed of a card while it is rotating")]
         private float rotationSpeed;
+
+        [SerializeField]
+        [Range(0, 1000)]
+        [Tooltip("Speed of a card while it is rotating for player 2")]
+        private float rotationSpeedP2;
 
         [Header("Movement")] [SerializeField] [Range(0, 10)] [Tooltip("Speed of a card while it is moving")]
         private float movementSpeed;
@@ -105,6 +111,7 @@ namespace Tools.UI.Card
         public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
         public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
         public float ScaleSpeed { get => scaleSpeed; set => scaleSpeed = value;}
+        public float RotationSpeedP2 { get => rotationSpeedP2; set => rotationSpeedP2 = value; }
 
         #endregion
 
@@ -131,7 +138,7 @@ namespace Tools.UI.Card
         {
             disabledAlpha = 0.5f;
 
-            hoverHeight = 0;
+            hoverHeight = 1;
             hoverRotation = false;
             hoverScale = 1.3f;
 

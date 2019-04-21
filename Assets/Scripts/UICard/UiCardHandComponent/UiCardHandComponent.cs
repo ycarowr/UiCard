@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Extensions;
+using UnityEngine;
 
 namespace Tools.UI.Card
 {
@@ -47,6 +48,7 @@ namespace Tools.UI.Card
         public bool IsDragging => Fsm.IsCurrent<UiCardDrag>();
         public bool IsHovering => Fsm.IsCurrent<UiCardHover>();
         public bool IsDisabled => Fsm.IsCurrent<UiCardDisable>();
+        public bool IsPlayer => transform.CloserEdge(MainCamera, Screen.width, Screen.height) == 1;
 
         #endregion
 
@@ -92,6 +94,9 @@ namespace Tools.UI.Card
 
         public void Select()
         {
+            if (!IsPlayer)
+                return;
+
             Hand.SelectCard(this);
             Fsm.Select();
         }

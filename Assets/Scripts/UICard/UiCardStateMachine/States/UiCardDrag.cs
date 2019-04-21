@@ -33,13 +33,6 @@ namespace Tools.UI.Card
             Handler.Transform.position = WorldPoint().WithZ(myZ);
         }
 
-        private void AddTorque()
-        {
-            //TODO: Add Torque to the Card.
-
-            throw new NotImplementedException();
-        }
-
         //--------------------------------------------------------------------------------------------------------------
 
         #region Operations

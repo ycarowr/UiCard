@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Extensions;
+using System;
+using UnityEngine;
 
 namespace Tools.UI.Card
 {
@@ -127,7 +129,5 @@ namespace Tools.UI.Card
         }
 
         #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
     }
 }
