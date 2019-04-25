@@ -1,0 +1,6 @@
+1.1 
+- Add Movement, animations, rotation, scale
+- Layout changes to a simpler version
+
+1.11 
+- Add custom card back
