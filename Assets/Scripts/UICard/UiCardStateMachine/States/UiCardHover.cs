@@ -57,7 +57,7 @@ namespace Tools.UI.Card
         {
             var rotationSpeed = Handler.IsPlayer ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
             Handler.RotateTo(StartEuler, rotationSpeed);
-            Handler.MoveTo(StartPosition, Parameters.MovementSpeed);
+            Handler.MoveTo(StartPosition, Parameters.HoverSpeed);
             Handler.ScaleTo(StartScale, Parameters.ScaleSpeed);
         }
 
@@ -86,7 +86,7 @@ namespace Tools.UI.Card
             var currentPosWithoutY = new Vector3(Handler.transform.position.x, 0, Handler.transform.position.z);
             var hoverHeightParameter = new Vector3(0, Parameters.HoverHeight);
             var final = currentPosWithoutY + edgeY + (halfCardHeight + hoverHeightParameter) * edgeFactor;
-            Handler.MoveTo(final, Parameters.MovementSpeed);
+            Handler.MoveTo(final, Parameters.HoverSpeed);
         }
 
         private void SetScale()

@@ -52,6 +52,11 @@ namespace Tools.UI.Card
         [SerializeField] [Tooltip("How much a hovered card scales.")] [Range(0.9f, 2f)]
         private float hoverScale;
 
+        [SerializeField]
+        [Range(0, 25)]
+        [Tooltip("Speed of a card while it is hovering")]
+        private float hoverSpeed;
+
         #endregion
 
         //--------------------------------------------------------------------------------------------------------------
@@ -101,13 +106,13 @@ namespace Tools.UI.Card
         [Tooltip("Speed of a card while it is rotating for player 2")]
         private float rotationSpeedP2;
 
-        [Header("Movement")] [SerializeField] [Range(0, 10)] [Tooltip("Speed of a card while it is moving")]
+        [Header("Movement")] [SerializeField] [Range(0, 15)] [Tooltip("Speed of a card while it is moving")]
         private float movementSpeed;
 
-        
-        [Header("Scale")] [SerializeField] [Range(0, 10)] [Tooltip("Speed of a card while it is scaling")]
+        [Header("Scale")] [SerializeField] [Range(0, 15)] [Tooltip("Speed of a card while it is scaling")]
         private float scaleSpeed;
 
+        public float HoverSpeed { get => hoverSpeed; set => hoverSpeed = value; }
         public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
         public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
         public float ScaleSpeed { get => scaleSpeed; set => scaleSpeed = value;}
@@ -142,6 +147,7 @@ namespace Tools.UI.Card
             hoverHeight = 1;
             hoverRotation = false;
             hoverScale = 1.3f;
+            hoverSpeed = 15f;
 
             height = 0.12f;
             spacing = -2;
@@ -150,7 +156,7 @@ namespace Tools.UI.Card
             rotationSpeedP2 = 500;
             rotationSpeed = 20;
             movementSpeed = 4;
-            scaleSpeed = 8;
+            scaleSpeed = 7;
 
             startSizeWhenDraw = 0.05f;
             discardedSize = 0.5f;
