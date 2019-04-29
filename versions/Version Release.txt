@@ -4,3 +4,8 @@
 
 1.11 
 - Add custom card back
+
+1.2
+- Better Graphics 
+- Second Player
+- Layout Changes
