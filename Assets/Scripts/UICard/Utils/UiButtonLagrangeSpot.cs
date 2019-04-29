@@ -5,6 +5,7 @@ public class UiButtonLagrangeSpot : MonoBehaviour
 {
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         GetComponent<Button>().onClick.AddListener(OpenTwitter);
     }
 
