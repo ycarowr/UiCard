@@ -26,7 +26,7 @@ namespace Tools.UI.Card
         /// <summary>
         ///     Limit magnitude until the reaches the target completely.
         /// </summary>
-        protected virtual float Threshold => 0.1f;
+        protected virtual float Threshold => 0.01f;
 
         /// <summary>
         ///     Target of the motion.
