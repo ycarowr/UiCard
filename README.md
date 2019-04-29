@@ -4,11 +4,11 @@ For a better description access the [itch.io](https://ycarowr.itch.io/cardgameui
 
 Credits for the monsters, Tyler Warren: https://tylerjwarren.itch.io/free-tyler-warren-rpg-battlers-favorites-30
 
-![alt text](https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.1/draw_and_hover.gif)
-![alt text](https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.1/hand_params.gif)
-![alt text(https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.1/draw_play.gif)
-![alt text](https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.1/zones.gif)
-
+![alt text](https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/drawing.gif)
+![alt text](https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/hovering.gif)
+![alt text(https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/play.gif)
+![alt text](https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/angle.gif)
+![alt text](https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/spacing.gif)
 
 
 
