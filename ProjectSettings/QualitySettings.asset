@@ -184,20 +184,20 @@ QualitySettings:
   - serializedVersion: 2
     name: Ultra
     pixelLightCount: 4
-    shadows: 2
-    shadowResolution: 2
-    shadowProjection: 1
-    shadowCascades: 4
-    shadowDistance: 150
-    shadowNearPlaneOffset: 3
+    shadows: 0
+    shadowResolution: 0
+    shadowProjection: 0
+    shadowCascades: 1
+    shadowDistance: 0
+    shadowNearPlaneOffset: 0
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
-    shadowmaskMode: 1
+    shadowmaskMode: 0
     skinWeights: 4
     textureQuality: 0
-    anisotropicTextures: 1
+    anisotropicTextures: 2
     antiAliasing: 8
-    softParticles: 1
+    softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
@@ -216,4 +216,17 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     excludedTargetPlatforms: []
-  m_PerPlatformDefaultQuality: {}
+  m_PerPlatformDefaultQuality:
+    Android: 2
+    Nintendo 3DS: 5
+    Nintendo Switch: 5
+    PS4: 5
+    PSP2: 2
+    Standalone: 5
+    Tizen: 2
+    WebGL: 3
+    WiiU: 5
+    Windows Store Apps: 5
+    XboxOne: 5
+    iPhone: 2
+    tvOS: 2
