@@ -2,20 +2,22 @@
 
 namespace Tools.UI.Card
 {
+    /// <summary>
+    ///     Interface for the used UI Components.
+    ///     TODO: To split it in smaller interfaces.
+    /// </summary>
     public interface IUiCardComponents
     {
         UiCardParameters CardConfigsParameters { get; }
         Camera MainCamera { get; }
-        IUiCardHand CardSelector { get; }
+        IUiCardHand Hand { get; }
         SpriteRenderer[] Renderers { get; }
         SpriteRenderer MyRenderer { get; }
         Collider Collider { get; }
         Rigidbody Rigidbody { get; }
-        Transform Transform { get; }
         IMouseInput Input { get; }
         GameObject gameObject { get; }
         Transform transform { get; }
-        UiCardMovement UiCardMovement { get; }
         MonoBehaviour MonoBehavior { get; }
     }
 }

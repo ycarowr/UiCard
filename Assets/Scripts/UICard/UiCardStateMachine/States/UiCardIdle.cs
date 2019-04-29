@@ -14,7 +14,7 @@ namespace Tools.UI.Card
         public UiCardIdle(IUiCard handler, BaseStateMachine fsm, UiCardParameters parameters) : base(handler, fsm,
             parameters)
         {
-            DefaultSize = Handler.Transform.localScale;
+            DefaultSize = Handler.transform.localScale;
         }
 
         private Vector3 DefaultSize { get; }
@@ -26,10 +26,10 @@ namespace Tools.UI.Card
             Handler.Input.OnPointerDown += OnPointerDown;
             Handler.Input.OnPointerEnter += OnPointerEnter;
 
-            if (Handler.UiCardMovement.IsOperating)
+            if (Handler.Movement.IsOperating)
             {
                 DisableCollision();
-                Handler.UiCardMovement.OnFinishMotion += Enable;
+                Handler.Movement.OnFinishMotion += Enable;
             }
             else
             {
@@ -44,7 +44,7 @@ namespace Tools.UI.Card
         {
             Handler.Input.OnPointerDown -= OnPointerDown;
             Handler.Input.OnPointerEnter -= OnPointerEnter;
-            Handler.UiCardMovement.OnFinishMotion -= Enable;
+            Handler.Movement.OnFinishMotion -= Enable;
         }
 
         //--------------------------------------------------------------------------------------------------------------

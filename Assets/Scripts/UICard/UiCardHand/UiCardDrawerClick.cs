@@ -18,7 +18,7 @@ namespace Tools.UI.Card
 
         private void DrawCard(PointerEventData obj)
         {
-            CardDrawer.DrawCard(0);
+            CardDrawer.DrawCard();
         }
     }
 }

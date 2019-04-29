@@ -29,8 +29,8 @@ namespace Tools.UI.Card
 
         private void FollowCursor()
         {
-            var myZ = Handler.Transform.position.z;
-            Handler.Transform.position = WorldPoint().WithZ(myZ);
+            var myZ = Handler.transform.position.z;
+            Handler.transform.position = WorldPoint().WithZ(myZ);
         }
 
         //--------------------------------------------------------------------------------------------------------------
@@ -45,10 +45,10 @@ namespace Tools.UI.Card
         public override void OnEnterState()
         {
             //stop any movement
-            Handler.UiCardMovement.StopMotion();
+            Handler.Movement.StopMotion();
 
             //cache old values
-            StartEuler = Handler.Transform.eulerAngles;
+            StartEuler = Handler.transform.eulerAngles;
 
             Handler.RotateTo(Vector3.zero, Parameters.RotationSpeed);
             MakeRenderFirst();
@@ -58,7 +58,7 @@ namespace Tools.UI.Card
         public override void OnExitState()
         {
             //reset position and rotation
-            if (Handler.Transform)
+            if (Handler.transform)
             {
                 Handler.RotateTo(StartEuler, Parameters.RotationSpeed);
                 MakeRenderNormal();

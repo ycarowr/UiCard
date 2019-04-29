@@ -134,6 +134,7 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
+        [Button]
         public void SetDefaults()
         {
             disabledAlpha = 0.5f;
@@ -146,6 +147,7 @@ namespace Tools.UI.Card
             spacing = -2;
             bentAngle = 20;
 
+            rotationSpeedP2 = 500;
             rotationSpeed = 20;
             movementSpeed = 4;
             scaleSpeed = 8;

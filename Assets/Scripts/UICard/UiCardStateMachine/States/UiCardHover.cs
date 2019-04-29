@@ -98,9 +98,9 @@ namespace Tools.UI.Card
 
         private void CachePreviousValues()
         {
-            StartPosition = Handler.Transform.position;
-            StartEuler = Handler.Transform.eulerAngles;
-            StartScale = Handler.Transform.localScale;
+            StartPosition = Handler.transform.position;
+            StartEuler = Handler.transform.eulerAngles;
+            StartScale = Handler.transform.localScale;
         }
 
         private void SubscribeInput()

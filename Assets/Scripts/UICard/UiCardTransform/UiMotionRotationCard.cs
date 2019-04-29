@@ -2,24 +2,17 @@
 
 namespace Tools.UI.Card
 {
-    public class UiCardRotation : UiCardBaseTransform
+    public class UiMotionRotationCard : UiMotionBaseCard
     {
+        //--------------------------------------------------------------------------------------------------------------
+
+        public UiMotionRotationCard(IUiCard handler) : base(handler)
+        {
+        }
+
         protected override float Threshold => 0.05f;
 
         //--------------------------------------------------------------------------------------------------------------
-
-        public UiCardRotation(IUiCard handler) : base(handler)
-        {
-        }
-
-        //--------------------------------------------------------------------------------------------------------------
-
-        public override void Execute(Vector3 euler, float speed, float delay = 0)
-        {
-            IsOperating = true;
-            Target = euler;
-            Speed = speed;
-        }
 
         protected override void OnMotionEnds()
         {

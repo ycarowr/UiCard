@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Tools.UI.Card
 {
-    public abstract class UiCardBaseTransform
+    public abstract class UiMotionBaseCard
     {
         /// <summary>
         ///     Dispatches when the motion ends.
@@ -12,7 +13,7 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
-        protected UiCardBaseTransform(IUiCard handler)
+        protected UiMotionBaseCard(IUiCard handler)
         {
             Handler = handler;
         }
@@ -33,7 +34,7 @@ namespace Tools.UI.Card
         protected Vector3 Target { get; set; }
 
         /// <summary>
-        ///     Reference for the card. 
+        ///     Reference for the card.
         /// </summary>
         protected IUiCard Handler { get; }
 
@@ -80,10 +81,30 @@ namespace Tools.UI.Card
         /// <param name="vector"></param>
         /// <param name="speed"></param>
         /// <param name="delay"></param>
-        public abstract void Execute(Vector3 vector, float speed, float delay = 0);
+        public virtual void Execute(Vector3 vector, float speed, float delay = 0, bool withZ = false)
+        {
+            Speed = speed;
+            Target = vector;
+            if (delay == 0)
+                IsOperating = true;
+            else
+                Handler.MonoBehavior.StartCoroutine(AllowMotion(delay));
+        }
+
+        /// <summary>
+        ///     Used to delay the Motion.
+        /// </summary>
+        /// <param name="delay"></param>
+        /// <returns></returns>
+        private IEnumerator AllowMotion(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            IsOperating = true;
+        }
 
         /// <summary>
         ///     Stop the motion. It won't trigger OnFinishMotion.
+        ///     TODO: Cancel the Delay Coroutine.
         /// </summary>
         public virtual void StopMotion()
         {

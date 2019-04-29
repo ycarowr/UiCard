@@ -10,15 +10,18 @@ namespace Tools.UI.Card
     {
         private void Awake()
         {
-            var cardHand = FindObjectOfType<UiCardHand>();
+            var cardHands = FindObjectsOfType<UiCardHand>();
             var button = GetComponentInChildren<Button>();
             var slider = GetComponentInChildren<Slider>();
 
-            if (button)
-                button.onClick.AddListener(cardHand.NotifyPileChange);
+            foreach (var hand in cardHands)
+            {
+                if (button)
+                    button.onClick.AddListener(hand.NotifyPileChange);
 
-            if (slider)
-                slider.onValueChanged.AddListener(afloat => { cardHand.NotifyPileChange(); });
+                if (slider)
+                    slider.onValueChanged.AddListener(afloat => { hand.NotifyPileChange(); });
+            }
         }
     }
 }

@@ -16,17 +16,16 @@ namespace Tools.UI.Card
         SpriteRenderer IUiCardComponents.MyRenderer => MyRenderer;
         Collider IUiCardComponents.Collider => MyCollider;
         Rigidbody IUiCardComponents.Rigidbody => MyRigidbody;
-        Transform IUiCardComponents.Transform => MyTransform;
         IMouseInput IUiCardComponents.Input => MyInput;
-        IUiCardHand IUiCardComponents.CardSelector => Hand;
+        IUiCardHand IUiCardComponents.Hand => Hand;
 
         #endregion
 
         #region Transform
 
-        public UiCardMovement UiCardMovement { get; private set; }
-        public UiCardRotation UiCardRotation { get; private set; }
-        public UiCardScale UiCardScale { get; private set; }
+        public UiMotionBaseCard Movement { get; private set; }
+        public UiMotionBaseCard Rotation { get; private set; }
+        public UiMotionBaseCard Scale { get; private set; }
 
         #endregion
 
@@ -58,17 +57,22 @@ namespace Tools.UI.Card
 
         public void RotateTo(Vector3 rotation, float speed)
         {
-            UiCardRotation.Execute(rotation, speed);
+            Rotation.Execute(rotation, speed);
         }
 
         public void MoveTo(Vector3 position, float speed, float delay)
         {
-            UiCardMovement.Execute(position, speed, delay);
+            Movement.Execute(position, speed, delay, false);
+        }
+
+        public void MoveToWithZ(Vector3 position, float speed, float delay)
+        {
+            Movement.Execute(position, speed, delay, true);
         }
 
         public void ScaleTo(Vector3 scale, float speed, float delay)
         {
-            UiCardScale.Execute(scale, speed, delay);
+            Scale.Execute(scale, speed, delay);
         }
 
         #endregion
@@ -94,6 +98,7 @@ namespace Tools.UI.Card
 
         public void Select()
         {
+            // to avoid the player selecting enemy's cards
             if (!IsPlayer)
                 return;
 
@@ -134,9 +139,9 @@ namespace Tools.UI.Card
             MyRenderer = GetComponent<SpriteRenderer>();
 
             //transform
-            UiCardScale = new UiCardScale(this);
-            UiCardMovement = new UiCardMovement(this);
-            UiCardRotation = new UiCardRotation(this);
+            Scale = new UiMotionScaleCard(this);
+            Movement = new UiMotionMovementCard(this);
+            Rotation = new UiMotionRotationCard(this);
 
 
             //fsm
@@ -145,10 +150,10 @@ namespace Tools.UI.Card
 
         private void Update()
         {
-            Fsm.Update();
-            UiCardMovement.Update();
-            UiCardRotation.Update();
-            UiCardScale.Update();
+            Fsm?.Update();
+            Movement?.Update();
+            Rotation?.Update();
+            Scale?.Update();
         }
 
         #endregion
