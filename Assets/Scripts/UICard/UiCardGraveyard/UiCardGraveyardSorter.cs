@@ -6,7 +6,8 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(UiCardGraveyard))]
     public class UiCardGraveyardSorter : MonoBehaviour
     {
-        [SerializeField] [Tooltip("World point where the graveyard is positioned")]
+        [SerializeField]
+        [Tooltip("World point where the graveyard is positioned")]
         private Transform graveyardPosition;
 
         [SerializeField] private UiCardParameters parameters;
@@ -34,13 +35,13 @@ namespace Tools.UI.Card
             var backGravPos = graveyardPosition.position;
 
             //move last
-            lastCard.MoveTo(gravPos, parameters.MovementSpeed);
+            lastCard.MoveToWithZ(gravPos, parameters.MovementSpeed);
 
             //move others
             for (var i = 0; i < cards.Length - 1; i++)
             {
                 var card = cards[i];
-                card.MoveTo(backGravPos, parameters.MovementSpeed);
+                card.MoveToWithZ(backGravPos, parameters.MovementSpeed);
             }
         }
 
