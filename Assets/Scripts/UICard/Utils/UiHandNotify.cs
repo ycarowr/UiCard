@@ -10,7 +10,7 @@ namespace Tools.UI.Card
     {
         private void Awake()
         {
-            var cardHands = FindObjectsOfType<UiCardHand>();
+            var cardHands = FindObjectsOfType<UiPlayerHand>();
             var button = GetComponentInChildren<Button>();
             var slider = GetComponentInChildren<Slider>();
 

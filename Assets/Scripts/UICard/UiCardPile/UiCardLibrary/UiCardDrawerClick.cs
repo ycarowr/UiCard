@@ -6,12 +6,12 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(IMouseInput))]
     public class UiCardDrawerClick : MonoBehaviour
     {
-        private UiCardUtils CardDrawer { get; set; }
+        private UiPlayerHandUtils CardDrawer { get; set; }
         private IMouseInput Input { get; set; }
 
         private void Awake()
         {
-            CardDrawer = transform.parent.GetComponentInChildren<UiCardUtils>();
+            CardDrawer = transform.parent.GetComponentInChildren<UiPlayerHandUtils>();
             Input = GetComponent<IMouseInput>();
             Input.OnPointerClick += DrawCard;
         }

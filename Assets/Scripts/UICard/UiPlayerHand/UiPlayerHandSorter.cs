@@ -3,20 +3,20 @@ using UnityEngine;
 
 namespace Tools.UI.Card
 {
-    [RequireComponent(typeof(UiCardHand))]
-    public class UiCardHandSorter : MonoBehaviour
+    [RequireComponent(typeof(IUiPlayerHand))]
+    public class UiPlayerHandSorter : MonoBehaviour
     {
         //--------------------------------------------------------------------------------------------------------------
 
         private const int OffsetZ = -1;
-        private IUiCardPile CardHand { get; set; }
+        private IUiCardPile PlayerHand { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
 
         private void Awake()
         {
-            CardHand = GetComponent<UiCardHand>();
-            CardHand.OnPileChanged += Sort;
+            PlayerHand = GetComponent<IUiPlayerHand>();
+            PlayerHand.OnPileChanged += Sort;
         }
 
         //--------------------------------------------------------------------------------------------------------------

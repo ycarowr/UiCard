@@ -6,18 +6,52 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(IMouseInput))]
-    public class UiCardHandComponent : MonoBehaviour, IUiCard
+    public class UiCardComponent : MonoBehaviour, IUiCard
     {
+        //--------------------------------------------------------------------------------------------------------------
+
+        #region Unity Callbacks
+
+        private void Awake()
+        {
+            //components
+            MyTransform = transform;
+            MyCollider = GetComponent<Collider>();
+            MyRigidbody = GetComponent<Rigidbody>();
+            MyInput = GetComponent<IMouseInput>();
+            Hand = transform.parent.GetComponentInChildren<IUiPlayerHand>();
+            MyRenderers = GetComponentsInChildren<SpriteRenderer>();
+            MyRenderer = GetComponent<SpriteRenderer>();
+
+            //transform
+            Scale = new UiMotionScaleCard(this);
+            Movement = new UiMotionMovementCard(this);
+            Rotation = new UiMotionRotationCard(this);
+
+            //fsm
+            Fsm = new UiCardHandFsm(MainCamera, cardConfigsParameters, this);
+        }
+
+        private void Update()
+        {
+            Fsm?.Update();
+            Movement?.Update();
+            Rotation?.Update();
+            Scale?.Update();
+        }
+
+        #endregion
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Components
 
         SpriteRenderer[] IUiCardComponents.Renderers => MyRenderers;
-        SpriteRenderer IUiCardComponents.MyRenderer => MyRenderer;
+        SpriteRenderer IUiCardComponents.Renderer => MyRenderer;
         Collider IUiCardComponents.Collider => MyCollider;
         Rigidbody IUiCardComponents.Rigidbody => MyRigidbody;
         IMouseInput IUiCardComponents.Input => MyInput;
-        IUiCardHand IUiCardComponents.Hand => Hand;
+        IUiPlayerHand IUiCard.Hand => Hand;
 
         #endregion
 
@@ -32,7 +66,6 @@ namespace Tools.UI.Card
         #region Properties
 
         public string Name => gameObject.name;
-        public UiCardParameters CardConfigsParameters => cardConfigsParameters;
         [SerializeField] public UiCardParameters cardConfigsParameters;
         private UiCardHandFsm Fsm { get; set; }
         private Transform MyTransform { get; set; }
@@ -41,7 +74,7 @@ namespace Tools.UI.Card
         private SpriteRenderer MyRenderer { get; set; }
         private Rigidbody MyRigidbody { get; set; }
         private IMouseInput MyInput { get; set; }
-        private IUiCardHand Hand { get; set; }
+        private IUiPlayerHand Hand { get; set; }
         public MonoBehaviour MonoBehavior => this;
         public Camera MainCamera => Camera.main;
         public bool IsDragging => Fsm.IsCurrent<UiCardDrag>();
@@ -125,39 +158,6 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
-        #region Unity Callbacks
-
-        private void Awake()
-        {
-            //components
-            MyTransform = transform;
-            MyCollider = GetComponent<Collider>();
-            MyRigidbody = GetComponent<Rigidbody>();
-            MyInput = GetComponent<IMouseInput>();
-            Hand = transform.parent.GetComponentInChildren<IUiCardHand>();
-            MyRenderers = GetComponentsInChildren<SpriteRenderer>();
-            MyRenderer = GetComponent<SpriteRenderer>();
-
-            //transform
-            Scale = new UiMotionScaleCard(this);
-            Movement = new UiMotionMovementCard(this);
-            Rotation = new UiMotionRotationCard(this);
-
-
-            //fsm
-            Fsm = new UiCardHandFsm(MainCamera, CardConfigsParameters, this);
-        }
-
-        private void Update()
-        {
-            Fsm?.Update();
-            Movement?.Update();
-            Rotation?.Update();
-            Scale?.Update();
-        }
-
-        #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
+       
     }
 }

@@ -7,8 +7,8 @@ namespace Tools.UI.Card
     /// <summary>
     ///     Class responsible to bend the cards in the player hand.
     /// </summary>
-    [RequireComponent(typeof(UiCardHand))]
-    public class UiCardBender : MonoBehaviour
+    [RequireComponent(typeof(IUiPlayerHand))]
+    public class UiPlayerHandBender : MonoBehaviour
     {
         //--------------------------------------------------------------------------------------------------------------
 
@@ -16,9 +16,9 @@ namespace Tools.UI.Card
 
         private void Awake()
         {
-            CardHand = GetComponent<UiCardHand>();
+            PlayerHand = GetComponent<IUiPlayerHand>();
             CardRenderer = CardPrefab.GetComponent<SpriteRenderer>();
-            CardHand.OnPileChanged += Bend;
+            PlayerHand.OnPileChanged += Bend;
         }
 
         #endregion
@@ -30,14 +30,14 @@ namespace Tools.UI.Card
         [SerializeField] private UiCardParameters parameters;
 
         [SerializeField] [Tooltip("The Card Prefab")]
-        private UiCardHandComponent CardPrefab;
+        private UiCardComponent CardPrefab;
 
         [SerializeField] [Tooltip("Transform used as anchor to position the cards.")]
         private Transform pivot;
 
         private SpriteRenderer CardRenderer { get; set; }
         private float CardWidth => CardRenderer.bounds.size.x;
-        private IUiCardHand CardHand { get; set; }
+        private IUiPlayerHand PlayerHand { get; set; }
 
         #endregion
 

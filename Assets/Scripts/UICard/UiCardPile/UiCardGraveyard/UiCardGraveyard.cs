@@ -15,7 +15,7 @@ namespace Tools.UI.Card
 
         //--------------------------------------------------------------------------------------------------------------
 
-        private IUiCardHand CardHand { get; set; }
+        private IUiPlayerHand PlayerHand { get; set; }
 
 
         //--------------------------------------------------------------------------------------------------------------
@@ -25,8 +25,8 @@ namespace Tools.UI.Card
         protected override void Awake()
         {
             base.Awake();
-            CardHand = transform.parent.GetComponentInChildren<UiCardHand>();
-            CardHand.OnCardPlayed += AddCard;
+            PlayerHand = transform.parent.GetComponentInChildren<IUiPlayerHand>();
+            PlayerHand.OnCardPlayed += AddCard;
         }
 
         #endregion

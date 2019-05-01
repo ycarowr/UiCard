@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Tools.UI.Card
 {
-    public class UiCardUtils : MonoBehaviour
+    public class UiPlayerHandUtils : MonoBehaviour
     {
         //--------------------------------------------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ namespace Tools.UI.Card
         [SerializeField] [Tooltip("Game view transform")]
         private Transform gameView;
 
-        private UiCardHand CardHand { get; set; }
+        private IUiPlayerHand PlayerHand { get; set; }
 
         #endregion
 
@@ -32,7 +32,7 @@ namespace Tools.UI.Card
 
         private void Awake()
         {
-            CardHand = transform.parent.GetComponentInChildren<UiCardHand>();
+            PlayerHand = transform.parent.GetComponentInChildren<IUiPlayerHand>();
         }
 
         private IEnumerator Start()
@@ -60,16 +60,16 @@ namespace Tools.UI.Card
             var card = cardGo.GetComponent<IUiCard>();
             card.transform.position = deckPosition.position;
             Count++;
-            CardHand.AddCard(card);
+            PlayerHand.AddCard(card);
         }
 
         [Button]
         public void PlayCard()
         {
-            if (CardHand.Cards.Count > 0)
+            if (PlayerHand.Cards.Count > 0)
             {
-                var randomCard = CardHand.Cards.RandomItem();
-                CardHand.PlayCard(randomCard);
+                var randomCard = PlayerHand.Cards.RandomItem();
+                PlayerHand.PlayCard(randomCard);
             }
         }
 

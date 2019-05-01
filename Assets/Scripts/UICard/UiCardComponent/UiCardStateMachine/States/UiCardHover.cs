@@ -77,7 +77,7 @@ namespace Tools.UI.Card
         private void SetPosition()
         {
             var camera = Handler.MainCamera;
-            var halfCardHeight = new Vector3(0, Handler.MyRenderer.bounds.size.y / 2);
+            var halfCardHeight = new Vector3(0, Handler.Renderer.bounds.size.y / 2);
             var bottomEdge = Handler.MainCamera.ScreenToWorldPoint(Vector3.zero);
             var topEdge = Handler.MainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height));
             var edgeFactor = Handler.transform.CloserEdge(camera, Screen.width, Screen.height);

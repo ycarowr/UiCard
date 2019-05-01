@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Tools.UI.Card
 {
-    public interface IUiCardHand : IUiCardPile
+    public interface IUiPlayerHand : IUiCardPile
     {
+        List<IUiCard> Cards { get; }
         void PlaySelected();
         void Unselect();
         void PlayCard(IUiCard uiCard);

@@ -9,12 +9,12 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(IMouseInput))]
     public abstract class UiBaseDropZone : MonoBehaviour
     {
-        protected IUiCardHand CardHand { get; set; }
+        protected IUiPlayerHand CardHand { get; set; }
         protected IMouseInput Input { get; set; }
 
         protected virtual void Awake()
         {
-            CardHand = transform.parent.GetComponentInChildren<IUiCardHand>();
+            CardHand = transform.parent.GetComponentInChildren<IUiPlayerHand>();
             Input = GetComponent<IMouseInput>();
             Input.OnPointerUp += OnPointerUp;
         }
