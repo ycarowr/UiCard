@@ -71,10 +71,7 @@ namespace Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
         /// <param name="item"></param>
-        public static void AddToFront<T>(this List<T> list, T item)
-        {
-            list.Insert(0, item);
-        }
+        public static void AddToFront<T>(this List<T> list, T item) => list.Insert(0, item);
 
         /// <summary>
         ///     Add an item in before another item

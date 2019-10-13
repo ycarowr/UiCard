@@ -13,7 +13,7 @@ namespace Tools.UI.Card
         {
         }
 
-        private Vector3 StartScale { get; set; }
+        Vector3 StartScale { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
 
@@ -26,13 +26,13 @@ namespace Tools.UI.Card
             SetRotation();
         }
 
-        private void SetScale()
+        void SetScale()
         {
             var finalScale = Handler.transform.localScale * Parameters.DiscardedSize;
             Handler.ScaleTo(finalScale, Parameters.ScaleSpeed);
         }
 
-        private void SetRotation()
+        void SetRotation()
         {
             var speed = Handler.IsPlayer ? Parameters.RotationSpeed : Parameters.RotationSpeedP2;
             Handler.RotateTo(Vector3.zero, speed);

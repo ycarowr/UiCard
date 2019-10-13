@@ -8,12 +8,12 @@ namespace Tools.UI.Card
     {
         //--------------------------------------------------------------------------------------------------------------
 
-        private const int OffsetZ = -1;
-        private IUiCardPile PlayerHand { get; set; }
+        const int OffsetZ = -1;
+        IUiCardPile PlayerHand { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
 
-        private void Awake()
+        void Awake()
         {
             PlayerHand = GetComponent<IUiPlayerHand>();
             PlayerHand.OnPileChanged += Sort;

@@ -23,7 +23,7 @@ namespace Patterns
         {
         }
 
-        private void HandleDuplication()
+        void HandleDuplication()
         {
             //if not null we grab all possible objects of this type
             var allSingletonsOfThis = FindObjectsOfType(typeof(T));
@@ -71,15 +71,15 @@ namespace Patterns
         #region Fields
 
         //multi thread locker
-        private static readonly object locker = new object();
+        static readonly object locker = new object();
 
         [Tooltip("Mark it whether this singleton will be destroyed when the scene changes")] [SerializeField]
-        private bool isDontDestroyOnLoad;
+        bool isDontDestroyOnLoad;
 
         [Tooltip(
             "Mark it whether the script raises an exception when another singleton like this is present in the scene")]
         [SerializeField]
-        private bool isSilent = true;
+        bool isSilent = true;
 
         //singleton generic instance
         public static T Instance { get; private set; }
@@ -108,7 +108,7 @@ namespace Patterns
             if (Instance as SingletonMB<T> == this) Instance = null;
         }
 
-        private void Initialize()
+        void Initialize()
         {
             Instance = this as T;
             if (isDontDestroyOnLoad)

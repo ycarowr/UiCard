@@ -8,7 +8,7 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiHandNotify : MonoBehaviour
     {
-        private void Awake()
+        void Awake()
         {
             var cardHands = FindObjectsOfType<UiPlayerHand>();
             var button = GetComponentInChildren<Button>();

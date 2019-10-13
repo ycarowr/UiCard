@@ -8,7 +8,7 @@ namespace Tools.UI.Card
         {
         }
 
-        private bool WithZ { get; set; }
+        bool WithZ { get; set; }
 
         public override void Execute(Vector3 position, float speed, float delay, bool withZ)
         {

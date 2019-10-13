@@ -9,7 +9,7 @@ namespace Patterns
     /// <typeparam name="T"></typeparam>
     public class PersistentSingleton<T> : MonoBehaviour where T : Component
     {
-        private static T instance;
+        static T instance;
 
         #region Public Accessors
 
@@ -31,13 +31,13 @@ namespace Patterns
 
         #endregion
 
-        private static void CreateInstance()
+        static void CreateInstance()
         {
             var go = new GameObject(typeof(T).ToString());
             instance = go.AddComponent<T>();
         }
 
-        private static void HandleDuplication()
+        static void HandleDuplication()
         {
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance.
             var copies = FindObjectsOfType(typeof(T));

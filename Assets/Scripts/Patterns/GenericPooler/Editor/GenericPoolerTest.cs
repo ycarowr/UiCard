@@ -112,10 +112,7 @@ namespace Test
         {
             var pool = new PoolTest();
 
-            void releaseNull()
-            {
-                pool.Release(null);
-            }
+            void releaseNull() => pool.Release(null);
 
             Assert.Throws<GenericPooler<PoolableObjectTest>.GenericPoolerArgumentException>(releaseNull);
         }

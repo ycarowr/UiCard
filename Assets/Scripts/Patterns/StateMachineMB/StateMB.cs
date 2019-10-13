@@ -36,18 +36,12 @@ namespace Patterns.StateMachineMB
         /// <summary>
         ///     Called right after enter the state
         /// </summary>
-        public virtual void OnEnterState()
-        {
-            Log("OnEnterState <---------", "green");
-        }
+        public virtual void OnEnterState() => Log("OnEnterState <---------", "green");
 
         /// <summary>
         ///     Called right after left the state
         /// </summary>
-        public virtual void OnExitState()
-        {
-            Log("OnExitState <---------", "red");
-        }
+        public virtual void OnExitState() => Log("OnExitState <---------", "red");
 
 
         /// <summary>
@@ -61,7 +55,7 @@ namespace Patterns.StateMachineMB
         }
 
 
-        private void Log(string log, string colorName = "black")
+        void Log(string log, string colorName = "black")
         {
             log = string.Format("[" + GetType() + "]: <color={0}><b>" + log + "</b></color>", colorName);
             Debug.Log(log);

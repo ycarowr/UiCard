@@ -11,18 +11,18 @@ namespace Tools.UI.Card
 
         #region Fields
 
-        private int Count { get; set; }
+        int Count { get; set; }
 
         [SerializeField] [Tooltip("Prefab of the Card C#")]
-        private GameObject cardPrefabCs;
+        GameObject cardPrefabCs;
 
         [SerializeField] [Tooltip("World point where the deck is positioned")]
-        private Transform deckPosition;
+        Transform deckPosition;
 
         [SerializeField] [Tooltip("Game view transform")]
-        private Transform gameView;
+        Transform gameView;
 
-        private IUiPlayerHand PlayerHand { get; set; }
+        IUiPlayerHand PlayerHand { get; set; }
 
         #endregion
 
@@ -30,12 +30,9 @@ namespace Tools.UI.Card
 
         #region Unitycallbacks
 
-        private void Awake()
-        {
-            PlayerHand = transform.parent.GetComponentInChildren<IUiPlayerHand>();
-        }
+        void Awake() => PlayerHand = transform.parent.GetComponentInChildren<IUiPlayerHand>();
 
-        private IEnumerator Start()
+        IEnumerator Start()
         {
             //starting cards
             for (var i = 0; i < 5; i++)
@@ -73,17 +70,14 @@ namespace Tools.UI.Card
             }
         }
 
-        private void Update()
+        void Update()
         {
             if (Input.GetKeyDown(KeyCode.Tab)) DrawCard();
             if (Input.GetKeyDown(KeyCode.Space)) PlayCard();
             if (Input.GetKeyDown(KeyCode.Escape)) Restart();
         }
 
-        public void Restart()
-        {
-            SceneManager.LoadScene(0);
-        }
+        public void Restart() => SceneManager.LoadScene(0);
 
         #endregion
 

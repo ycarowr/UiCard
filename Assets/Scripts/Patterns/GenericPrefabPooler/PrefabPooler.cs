@@ -9,18 +9,18 @@ public class PrefabPooler : SingletonMB<PrefabPooler>
     #region Fields
 
     //StatesRegister of the already pooled objects
-    private readonly Dictionary<GameObject, List<GameObject>> busyObjects =
+    readonly Dictionary<GameObject, List<GameObject>> busyObjects =
         new Dictionary<GameObject, List<GameObject>>();
 
     //StatesRegister of the pooled available objects
-    private readonly Dictionary<GameObject, List<GameObject>> poolAbleObjects =
+    readonly Dictionary<GameObject, List<GameObject>> poolAbleObjects =
         new Dictionary<GameObject, List<GameObject>>();
 
     [Tooltip("How many objects will be created as soon as the game loads")] [SerializeField]
-    private readonly int startSize = 10;
+    readonly int startSize = 10;
 
     [Tooltip("All pooled models have to be inside this array before the initialization")] [SerializeField]
-    private GameObject[] modelsPooled;
+    GameObject[] modelsPooled;
 
     #endregion
 
@@ -31,7 +31,7 @@ public class PrefabPooler : SingletonMB<PrefabPooler>
     /// <summary>
     ///     I am initializing it as soon as possible. You can move it to Awake or Start calls. It's up to you.
     /// </summary>
-    private void OnEnable()
+    void OnEnable()
     {
         //avoiding execution when the game isn't playing
         if (!Application.isPlaying)
@@ -45,7 +45,7 @@ public class PrefabPooler : SingletonMB<PrefabPooler>
     ///     Here is the initialization of the pooler. All the models/prefabs which you need to pool have to be inside
     ///     the modelPooled array. They will be keys for the Lists inside the pool system.
     /// </summary>
-    private void Initialize()
+    void Initialize()
     {
         foreach (var model in modelsPooled)
         {
@@ -173,7 +173,7 @@ public class PrefabPooler : SingletonMB<PrefabPooler>
     /// <summary>
     /// </summary>
     /// <param name="prefabModel"></param>
-    private void OnPool(GameObject prefabModel)
+    void OnPool(GameObject prefabModel)
     {
         // If you need to execute some code right BEFORE the object is pooled, you can do it here.
         // Clean references or reset variables are very common cases.
@@ -182,7 +182,7 @@ public class PrefabPooler : SingletonMB<PrefabPooler>
     /// <summary>
     /// </summary>
     /// <param name="prefabModel"></param>
-    private void OnRelease(GameObject prefabModel)
+    void OnRelease(GameObject prefabModel)
     {
         // If you need to execute some code right AFTER the object is released, you can do it here.
         // Clean references or reset variables are very common cases.

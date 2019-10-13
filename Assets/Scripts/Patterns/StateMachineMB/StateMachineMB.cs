@@ -15,7 +15,7 @@ namespace Patterns.StateMachineMB
     {
         //--------------------------------------------------------------------------------------------------------------
 
-        private void Log(string log, string colorName = "black")
+        void Log(string log, string colorName = "black")
         {
             if (EnableLogs)
             {
@@ -28,10 +28,10 @@ namespace Patterns.StateMachineMB
         #region Fields and Properties
 
         //Push-Pop stack of States of this Type of Finite state Machine
-        private readonly Stack<StateMB<T>> stack = new Stack<StateMB<T>>();
+        readonly Stack<StateMB<T>> stack = new Stack<StateMB<T>>();
 
         //This StatesRegister doesn't allowed you to have two states with the same Type
-        private readonly Dictionary<Type, StateMB<T>> statesRegister = new Dictionary<Type, StateMB<T>>();
+        readonly Dictionary<Type, StateMB<T>> statesRegister = new Dictionary<Type, StateMB<T>>();
         public bool EnableLogs = true;
         public bool IsInitialized { get; private set; }
 

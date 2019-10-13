@@ -49,7 +49,7 @@ namespace Patterns
         ///     This is the Subject-Listener register. It supports both, Monobehaviors and
         ///     Pure C# classes that implement ISubject and IListener interfaces.
         /// </summary>
-        private readonly Dictionary<Type, List<IListener>>
+        readonly Dictionary<Type, List<IListener>>
             register = new Dictionary<Type, List<IListener>>();
 
         #endregion
@@ -143,7 +143,7 @@ namespace Patterns
         /// </summary>
         /// <param name="subject"></param>
         /// <param name="listener"></param>
-        private void CreateAndAdd(Type subject, IListener listener)
+        void CreateAndAdd(Type subject, IListener listener)
         {
             if (register.ContainsKey(subject))
                 register[subject].Add(listener);

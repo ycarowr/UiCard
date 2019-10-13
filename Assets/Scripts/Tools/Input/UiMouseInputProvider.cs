@@ -56,7 +56,7 @@ namespace Tools.UI
 
         #region Unity Callbacks
 
-        private void Awake()
+        void Awake()
         {
             // Currently using PhysicsRaycaster, but can be also considered PhysicsRaycaster2D.
             if (Camera.main.GetComponent<PhysicsRaycaster>() == null)
@@ -73,7 +73,7 @@ namespace Tools.UI
         ///     While dragging returns the direction of the movement.
         /// </summary>
         /// <returns></returns>
-        private DragDirection GetDragDirection()
+        DragDirection GetDragDirection()
         {
             var currentPosition = Input.mousePosition;
             var normalized = (currentPosition - oldDragPosition).normalized;
@@ -114,7 +114,7 @@ namespace Tools.UI
 
         #region Properties and Fields
 
-        private Vector3 oldDragPosition;
+        Vector3 oldDragPosition;
         DragDirection IMouseInput.DragDirection => GetDragDirection();
         Vector2 IMouseInput.MousePosition => Input.mousePosition;
 
@@ -124,50 +124,29 @@ namespace Tools.UI
 
         #region Unity Mouse Events
 
-        void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
-        {
+        void IBeginDragHandler.OnBeginDrag(PointerEventData eventData) =>
             ((IMouseInput) this).OnBeginDrag.Invoke(eventData);
-        }
 
-        void IDragHandler.OnDrag(PointerEventData eventData)
-        {
-            ((IMouseInput) this).OnDrag.Invoke(eventData);
-        }
+        void IDragHandler.OnDrag(PointerEventData eventData) => ((IMouseInput) this).OnDrag.Invoke(eventData);
 
-        void IDropHandler.OnDrop(PointerEventData eventData)
-        {
-            ((IMouseInput) this).OnDrop.Invoke(eventData);
-        }
+        void IDropHandler.OnDrop(PointerEventData eventData) => ((IMouseInput) this).OnDrop.Invoke(eventData);
 
-        void IEndDragHandler.OnEndDrag(PointerEventData eventData)
-        {
-            ((IMouseInput) this).OnEndDrag.Invoke(eventData);
-        }
+        void IEndDragHandler.OnEndDrag(PointerEventData eventData) => ((IMouseInput) this).OnEndDrag.Invoke(eventData);
 
-        void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
-        {
+        void IPointerClickHandler.OnPointerClick(PointerEventData eventData) =>
             ((IMouseInput) this).OnPointerClick.Invoke(eventData);
-        }
 
-        void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
-        {
+        void IPointerDownHandler.OnPointerDown(PointerEventData eventData) =>
             ((IMouseInput) this).OnPointerDown.Invoke(eventData);
-        }
 
-        void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
-        {
+        void IPointerUpHandler.OnPointerUp(PointerEventData eventData) =>
             ((IMouseInput) this).OnPointerUp.Invoke(eventData);
-        }
 
-        void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
-        {
+        void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData) =>
             ((IMouseInput) this).OnPointerEnter.Invoke(eventData);
-        }
 
-        void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
-        {
+        void IPointerExitHandler.OnPointerExit(PointerEventData eventData) =>
             ((IMouseInput) this).OnPointerExit.Invoke(eventData);
-        }
 
         #endregion
 

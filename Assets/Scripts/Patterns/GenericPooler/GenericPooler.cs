@@ -44,8 +44,8 @@ namespace Patterns
 
         #region Fields
 
-        private readonly List<T> busyObjects = new List<T>();
-        private readonly List<T> freeObjects = new List<T>();
+        readonly List<T> busyObjects = new List<T>();
+        readonly List<T> freeObjects = new List<T>();
 
         #endregion
 

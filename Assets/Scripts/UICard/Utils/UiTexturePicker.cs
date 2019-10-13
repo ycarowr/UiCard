@@ -9,10 +9,10 @@ namespace Tools.UI.Card
     /// </summary>
     public class UiTexturePicker : MonoBehaviour
     {
-        [SerializeField] private Sprite[] Sprites;
-        [SerializeField] private SpriteRenderer MyRenderer { get; set; }
+        [SerializeField] Sprite[] Sprites;
+        [SerializeField] SpriteRenderer MyRenderer { get; set; }
 
-        private void Awake()
+        void Awake()
         {
             MyRenderer = GetComponent<SpriteRenderer>();
 

@@ -16,10 +16,7 @@
         //public getter
         public static T Instance { get; private set; } = CreateInstance();
 
-        private static T CreateInstance()
-        {
-            return Instance ?? (Instance = new T());
-        }
+        static T CreateInstance() => Instance ?? (Instance = new T());
 
         //Setter used to inject an instance 
         public void InjectInstance(T instance)

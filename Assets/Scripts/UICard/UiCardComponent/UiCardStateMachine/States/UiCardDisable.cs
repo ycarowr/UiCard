@@ -12,9 +12,6 @@ namespace Tools.UI.Card
         {
         }
 
-        public override void OnEnterState()
-        {
-            Disable();
-        }
+        public override void OnEnterState() => Disable();
     }
 }

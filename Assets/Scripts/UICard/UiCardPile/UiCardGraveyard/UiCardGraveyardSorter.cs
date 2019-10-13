@@ -6,17 +6,16 @@ namespace Tools.UI.Card
     [RequireComponent(typeof(UiCardGraveyard))]
     public class UiCardGraveyardSorter : MonoBehaviour
     {
-        [SerializeField]
-        [Tooltip("World point where the graveyard is positioned")]
-        private Transform graveyardPosition;
+        [SerializeField] [Tooltip("World point where the graveyard is positioned")]
+        Transform graveyardPosition;
 
-        [SerializeField] private UiCardParameters parameters;
+        [SerializeField] UiCardParameters parameters;
 
-        private IUiCardPile CardGraveyard { get; set; }
+        IUiCardPile CardGraveyard { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
 
-        private void Awake()
+        void Awake()
         {
             CardGraveyard = GetComponent<UiCardGraveyard>();
             CardGraveyard.OnPileChanged += Sort;

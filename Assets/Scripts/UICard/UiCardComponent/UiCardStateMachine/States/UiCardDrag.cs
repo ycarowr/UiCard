@@ -1,5 +1,4 @@
-﻿using System;
-using Extensions;
+﻿using Extensions;
 using Patterns.StateMachine;
 using UnityEngine;
 
@@ -8,26 +7,24 @@ namespace Tools.UI.Card
     public class UiCardDrag : UiBaseCardState
     {
         public UiCardDrag(IUiCard handler, Camera camera, BaseStateMachine fsm, UiCardParameters parameters) : base(
-            handler, fsm, parameters)
-        {
+            handler, fsm, parameters) =>
             MyCamera = camera;
-        }
         //--------------------------------------------------------------------------------------------------------------
 
-        private Vector3 StartEuler { get; set; }
-        private Camera MyCamera { get; }
+        Vector3 StartEuler { get; set; }
+        Camera MyCamera { get; }
 
         //--------------------------------------------------------------------------------------------------------------
 
 
-        private Vector3 WorldPoint()
+        Vector3 WorldPoint()
         {
             var mousePosition = Handler.Input.MousePosition;
             var worldPoint = MyCamera.ScreenToWorldPoint(mousePosition);
             return worldPoint;
         }
 
-        private void FollowCursor()
+        void FollowCursor()
         {
             var myZ = Handler.transform.position.z;
             Handler.transform.position = WorldPoint().WithZ(myZ);
@@ -37,10 +34,7 @@ namespace Tools.UI.Card
 
         #region Operations
 
-        public override void OnUpdate()
-        {
-            FollowCursor();
-        }
+        public override void OnUpdate() => FollowCursor();
 
         public override void OnEnterState()
         {

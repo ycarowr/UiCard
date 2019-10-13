@@ -1,6 +1,4 @@
-﻿using Extensions;
-using System;
-using UnityEngine;
+﻿using System;
 
 namespace Tools.UI.Card
 {
@@ -16,23 +14,31 @@ namespace Tools.UI.Card
         #region Properties
 
         /// <summary>
-        ///      Card currently selected by the player.
+        ///     Card currently selected by the player.
         /// </summary>
         public IUiCard SelectedCard { get; private set; }
-        
-        private event Action<IUiCard> OnCardSelected = card => { };
 
-        private event Action<IUiCard> OnCardPlayed = card => { };
+        event Action<IUiCard> OnCardSelected = card => { };
+
+        event Action<IUiCard> OnCardPlayed = card => { };
 
         /// <summary>
         ///     Event raised when a card is played.
         /// </summary>
-        Action<IUiCard> IUiPlayerHand.OnCardPlayed { get => OnCardPlayed; set => OnCardPlayed = value; }
+        Action<IUiCard> IUiPlayerHand.OnCardPlayed
+        {
+            get => OnCardPlayed;
+            set => OnCardPlayed = value;
+        }
 
         /// <summary>
         ///     Event raised when a card is selected.
         /// </summary>
-        Action<IUiCard> IUiPlayerHand.OnCardSelected{ get => OnCardSelected; set => OnCardSelected = value; }
+        Action<IUiCard> IUiPlayerHand.OnCardSelected
+        {
+            get => OnCardSelected;
+            set => OnCardSelected = value;
+        }
 
         #endregion
 
@@ -82,7 +88,7 @@ namespace Tools.UI.Card
         }
 
         /// <summary>
-        ///    Unselect the card in the parameter.
+        ///     Unselect the card in the parameter.
         /// </summary>
         /// <param name="card"></param>
         public void UnselectCard(IUiCard card)
@@ -99,10 +105,7 @@ namespace Tools.UI.Card
         /// <summary>
         ///     Unselect the card which is currently selected. Nothing happens if current is null.
         /// </summary>
-        public void Unselect()
-        {
-            UnselectCard(SelectedCard);
-        }
+        public void Unselect() => UnselectCard(SelectedCard);
 
         /// <summary>
         ///     Disables input for all cards.
@@ -123,10 +126,7 @@ namespace Tools.UI.Card
         }
 
         [Button]
-        private void NotifyCardSelected()
-        {
-            OnCardSelected?.Invoke(SelectedCard);
-        }
+        void NotifyCardSelected() => OnCardSelected?.Invoke(SelectedCard);
 
         #endregion
     }

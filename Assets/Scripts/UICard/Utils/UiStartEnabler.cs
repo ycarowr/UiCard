@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Tools.UI.Card
 {
@@ -11,9 +9,6 @@ namespace Tools.UI.Card
     {
         public bool IsActive;
 
-        void Start()
-        {
-            gameObject.SetActive(IsActive);
-        }
+        void Start() => gameObject.SetActive(IsActive);
     }
 }
