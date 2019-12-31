@@ -8,8 +8,8 @@ For a playable version access [itch.io](https://ycarowr.itch.io/cardgameui) page
 |<img width="382" height="210" src="https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/drawing.gif">|<img width="382" height="210" src="https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/hovering.gif">
 |<b>Play Card</b>|<b> Angle Positioning</b>
 |<img width="382" height="210" src="https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/play.gif">|<img width="382" height="210" src="https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/angle.gif">
-|<b>Card Spacing</b>|<b>  </b>|
-<img width="382" height="210" src="https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/spacing.gif">||
+|<b>Card Spacing</b>|<b> Hover Enemy Card </b>|
+<img width="382" height="210" src="https://github.com/ycarowr/UiCard/blob/master/Assets/Textures/Ui%20Card%20Gifs/v1.2/spacing.gif">|<img width="382" height="210" src="/Assets/Textures/Ui%20Card%20Gifs/v1.2/hoverenemy.gif">|
 
 The repository has the main elements of an user interface for a card game like Magic Arena, Hearthstone, Slay the Spire etc. It's made in Unity3D and might be a good "starting point" for games such as the earlier mentioned titles.
 
