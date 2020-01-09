@@ -1,6 +1,6 @@
 [![Unity Version](https://img.shields.io/badge/Unity-2019.1.0f2%2B-blue.svg)](https://unity3d.com/get-unity/download)
-[![Twitter](https://img.shields.io/twitter/follow/LagrangeSpot.svg?label=Follow@LagrangeSpot&style=social)](https://twitter.com/intent/follow?screen_name=LagrangeSpot)
 ![version](https://img.shields.io/badge/version-1.2-blue)
+[![Twitter](https://img.shields.io/twitter/follow/LagrangeSpot.svg?label=Follow@LagrangeSpot&style=social)](https://twitter.com/intent/follow?screen_name=LagrangeSpot)
 
 # Generic UI for card games like Hearthstone, Magic Arena and Slay the Spire, etc
 Here are some images that illustrate what the repository contains and a decription of the content. 
