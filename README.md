@@ -29,9 +29,9 @@ Currently, you can:
 
 The following parameters can be changed:
 
-1. Card spacing: space between cards;
-2. Card rotation angle: rotation relative to the index of the card in the hand (cards on the left bend to left and cards on the right 3. 3. bend to the right);
-4. Card height (position on Y-axis) relative to the bent angle described on item 2;
+1. Card spacing;
+2. Card rotation angle;
+4. Card height (position on Y-axis) relative to the bent angle on item 2;
 5. Card hovered size: how much a card shrinks or grows when hovered;
 6. Card hovered rotation: whether it changes or not;
 7. Card hovered height: how much a card moves up (Y-axis) when hovered;
@@ -39,7 +39,7 @@ The following parameters can be changed:
 9. Position or pivot of the Hand: move it up and down;
 10. Drop Zone's positions: move them up and down;
 11. Disabled card Transparency (alpha): how much a disabled card "fades".
-12. Motions speeds: scale, movement and rotation.
+12. Motion speed: scale, movement and rotation.
 
 Thank you, any feedback is appreciated.
 
