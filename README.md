@@ -41,6 +41,11 @@ The following parameters can be changed:
 11. Disabled card Transparency (alpha): how much a disabled card "fades".
 12. Motion speed: scale, movement and rotation.
 
+Limitations:
+1. The interface is using 2D colliders, that way, the objects are not fully compatible with a 3D game;
+2. Memory heavy, each card has a state machine with a few states inside, in a limited environment, or overtime it is definitely a issue;
+3. ...
+
 Thank you, any feedback is appreciated.
 
 Illustations by: Tyler Warren https://tylerjwarren.itch.io/free-tyler-warren-rpg-battlers-favorites-30
