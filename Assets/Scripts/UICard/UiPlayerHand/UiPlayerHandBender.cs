@@ -17,7 +17,7 @@ namespace Tools.UI.Card
         void Awake()
         {
             PlayerHand = GetComponent<IUiPlayerHand>();
-            CardRenderer = CardPrefab.GetComponent<SpriteRenderer>();
+            CardRenderer = CardPrefab.GetComponentsInChildren<SpriteRenderer>()[0];
             PlayerHand.OnPileChanged += Bend;
         }
 
@@ -30,7 +30,7 @@ namespace Tools.UI.Card
         [SerializeField] UiCardParameters parameters;
 
         [SerializeField] [Tooltip("The Card Prefab")]
-        UiCardComponent CardPrefab;
+        GameObject CardPrefab;
 
         [SerializeField] [Tooltip("Transform used as anchor to position the cards.")]
         Transform pivot;
